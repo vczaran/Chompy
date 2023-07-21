@@ -10,7 +10,7 @@ function SignupForm() {
 
     function handleSubmit(e) {
         e.preventDefault();
-        dispatch(signupUser({email, password}));
+        dispatch(signupUser({name, email, password}));
     }
     return (
         <>

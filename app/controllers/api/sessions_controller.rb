@@ -5,8 +5,7 @@ class Api::SessionsController < ApplicationController
     def show
         @user = current_user
         if @user   
-          # render 'api/users/show'
-          render json: @user 
+          render 'api/users/show'
         else
           render json: { user: nil }
         end
@@ -16,11 +15,9 @@ class Api::SessionsController < ApplicationController
       email = params[:email]
       password = params[:password]
         @user = User.find_by_credentials(email, password)
-        # debugger
         if @user
           login(@user)
-          # render 'api/users/show'
-          render json: { message: "Successfully logged in!" }
+          render 'api/users/show'
         else
           render json: { errors: ['Oops! Your email or password was incorrect. Please try again.']}, status: :unauthorized
         end
