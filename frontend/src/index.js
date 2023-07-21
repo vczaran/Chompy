@@ -2,10 +2,26 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
+import configureStore from './store';
 
-ReactDOM.render(
+const store = configureStore();
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
+
+const initializeApp = () => {
+  root.render(
   <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
-);
+    <Provider store={store}> 
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
+    </Provider>
+  </React.StrictMode>
+    );
+  } 
+
+if (sessionStorage.getItem("currentUser") === null || sessionStorage.getItem("X-CSRF-Token") === null) {
+  store.dispatch(sessionActions.restoreSession()).then(initializeApp);
+} else {
+  initializeApp();
+};

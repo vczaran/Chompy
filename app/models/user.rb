@@ -16,11 +16,12 @@ class User < ApplicationRecord
 
     before_validation :ensure_session_token
 
-    validates :name, :email, presence: true, format: { with: URI::MailTo::EMAIL_REGEXP }
+    validates :name, presence: true
+    validates :email, presence: true, format: { with: URI::MailTo::EMAIL_REGEXP }
     validates :session_token, presence: true, uniqueness: true
     validates :password, length: { minimum: 8, allow_nil: true }
 
-    has_one :cart
+    has_many :cart_items
 
 
     def self.find_by_credentials(email, password)

@@ -15,7 +15,7 @@ class Api::SessionsController < ApplicationController
         @user = User.find_by_credentials(params[:email], params[:password])
     
         if @user
-          login!(@user)
+          login(@user)
           render 'api/users/show'
         else
           render json: { errors: ['Oops! Your email or password was incorrect. Please try again.']}, status: :unauthorized
@@ -23,7 +23,7 @@ class Api::SessionsController < ApplicationController
       end
     
       def destroy
-        logout!
+        logout
         render json: { message: 'Successfully logged out!' }
       end
 end

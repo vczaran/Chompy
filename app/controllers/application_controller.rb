@@ -1,10 +1,10 @@
 class ApplicationController < ActionController::API
+    before_action :snake_case_params, :attach_authenticity_token
     include ActionController::RequestForgeryProtection
 
     protect_from_forgery with: :exception 
     rescue_from ActionController::InvalidAuthenticityToken, with: :invalid_authenticity_token
 
-    before_action :snake_case_params, :attach_authenticity_token
     helper_method :current_user, :logged_in?
 
     def current_user
@@ -17,14 +17,14 @@ class ApplicationController < ActionController::API
     end
 
 
-    def login!(user)
-        session[:session_token] = user.reset_session_token!
+    def login(user)
+        session[:session_token] = user.reset_session_token
         @current_user = user
     end
     
     
-    def logout!(user)
-        current_user.reset_session_token!
+    def logout(user)
+        current_user.reset_session_token
         session[:session_token] = nil
         @current_user = nil
     end
