@@ -1,6 +1,6 @@
 
 export async function csrfFetch(url, options = {}) {
-    options.metohd = options.method ||= 'GET';
+    options.method = options.method ||= 'GET';
     options.headers = options.headers ||= {};
 
     if (options.method.toUpperCase() !== 'GET') {

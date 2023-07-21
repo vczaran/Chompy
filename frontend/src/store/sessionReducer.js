@@ -12,12 +12,12 @@ const setCurrentUser = (user) => ({
 
 const removeCurrentUser = () => ({
     type: REMOVE_CURRENT_USER
-})
+});
 
 const storeCSRFToken = res => {
     const csrfToken = res.headers.get("X-CSRF-Token");
     if (csrfToken) sessionStorage.setItem("X-CSRF-Token", csrfToken);
-}
+};
 
 const storeCurrentUser = user => {
     if (user) {
@@ -28,11 +28,13 @@ const storeCurrentUser = user => {
   }
 
 export const loginUser = ({ email, password }) => async dispatch => {
+    // debugger
     const res = await csrfFetch("/api/session", {
       method: "POST",
-      body: JSON.stringify({ email, password })
+      body: JSON.stringify({email, password})
     });
     const data = await res.json();
+    debugger
     storeCurrentUser(data.user);
     dispatch(setCurrentUser(data.user));
     return res;
@@ -75,11 +77,13 @@ export const loginUser = ({ email, password }) => async dispatch => {
   };
   
   const sessionReducer = (state = initialState, action) => {
+    const newState = {...state};
+
     switch (action.type) {
       case SET_CURRENT_USER:
-        return { ...state, user: action.user };
+        return { ...newState, user: action.user };
       case REMOVE_CURRENT_USER:
-        return { ...state, user: null };
+        return { ...newState, user: null };
       default:
         return state;
     }
