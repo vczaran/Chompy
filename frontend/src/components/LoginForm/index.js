@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { loginUser } from "../../store/sessionReducer";
 import { useState } from "react";
-import { Redirect } from "react-router-dom/cjs/react-router-dom.min";
+import { Redirect } from "react-router-dom";
 
 function LoginForm() {
     const dispatch = useDispatch();
@@ -20,14 +20,10 @@ function LoginForm() {
     return (
         <>
             <h1>Log In</h1>
-            <form onSubmit={handleSubmit}>
-                <label>Email
-                    <input type="text" value={email} onChange={(e) => {setEmail(e.target.value)}} required/>
-                </label>
+            <form className="login-form" onSubmit={handleSubmit}>
+                <input placeholder="Email Address" type="text" value={email} onChange={(e) => {setEmail(e.target.value)}} required/>
 
-                <label>Password
-                    <input type="password" value={password} onChange={(e) => {setPassword(e.target.value)}} required/>
-                </label>
+                <input placeholder="Password(Must be at least 8 characters)" type="password" value={password} onChange={(e) => {setPassword(e.target.value)}} required/>
 
                 <input type="submit" value="Log In"></input>
             </form>

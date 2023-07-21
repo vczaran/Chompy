@@ -4,11 +4,10 @@ class Api::UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
-    debugger
+
     if @user.save
         login(@user)
-        # render :show
-        render json: { message: "Successfully signed up!"}
+        render 'api/users/show'
     else
         render json: { errors: @user.errors.full_messages, status: :unprocessable_entity }
     end
@@ -16,7 +15,7 @@ class Api::UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    # render :show
+    render 'api/users/show'
   end
 
   private
