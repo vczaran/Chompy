@@ -1,0 +1,110 @@
+.login-page {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.login-form-title {
+    font-family: 'Roboto', Arial, Helvetica, sans-serif;
+    font-size: 24px;
+    margin: -7px 0px 24px -300px;
+    padding: 30px 0px 0px;
+    color: #333;
+}
+
+#signin-button {
+    background-color: #ef6c00;
+    color: #fff;
+    border: 1.6px solid #ef6c00;
+    font-weight: 600;
+    height: 50px;
+    width: 50px;
+    border-radius: 4px;
+    font-size: 17px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+#signin-button:hover {
+    background-color: rgb(155, 89, 9);
+    border-color: rgb(155, 89, 9);
+    cursor: pointer;
+}
+
+.login-form {
+    background: #fcfcfc;
+    border: 1px solid #eee;
+    border-radius: 5px;
+    box-shadow: 0 1px 0 0 #ccc;
+    padding: 35px 50px;
+    display: flex;
+    align-items: flex-start;
+}
+
+.login-info input{
+    font-family: 'Roboto', Arial, Helvetica, sans-serif;
+    font-weight: 400;
+    height: 30px;
+    width: 80%;
+    margin: 5px;
+    color: #999;
+    padding: 10px;
+    box-shadow: none;
+    border: 1px solid #999;
+    outline: none;
+    border-radius: 2px;
+    transition: all .15s ease-out;
+}
+
+.login-info input:hover {
+    border-color: orange;
+    cursor: default;
+}
+
+.login-page > label {
+    font-family: 'Roboto', Arial, Helvetica, sans-serif;
+    color: #4caf50;
+    font-size: 24px;
+    margin: 5px 0px 15px;
+}
+
+.login-form > h3 {
+    font-family: 'Roboto', Arial, Helvetica, sans-serif;
+    color: #4caf50;
+    font-size: 24px;
+    margin: 5px 0px 15px;
+}
+
+.login-page p {
+    font-size: 14px;
+    color: black;
+    margin: -6px 0px 21px;
+}
+
+.login-page a {
+    font-family: 'Roboto', Arial, Helvetica, sans-serif;
+    cursor: pointer;
+    font-weight: 400;
+    font-size: 17px;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 4px;
+    background-color: #fff;
+    color: #163977;
+    border: 1px solid #163977;
+    padding: 10px;
+    width: 330px;
+    height: 30px;
+    margin-top: 20px;
+    position: relative;
+}
+
+.login-page a:hover {
+    background-color: rgb(222, 231, 242);
+}

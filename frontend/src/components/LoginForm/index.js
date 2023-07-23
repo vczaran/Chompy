@@ -2,6 +2,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { loginUser } from "../../store/sessionReducer";
 import { useState } from "react";
 import { Redirect } from "react-router-dom";
+import "./LoginForm.css";
+import { Link } from "react-router-dom";
 
 function LoginForm() {
     const dispatch = useDispatch();
@@ -19,15 +21,24 @@ function LoginForm() {
     }
     return (
         <>
-            <h1>Log In</h1>
-            <form className="login-form" onSubmit={handleSubmit}>
-                <input placeholder="Email Address" type="text" value={email} onChange={(e) => {setEmail(e.target.value)}} required/>
+        <h1 className="login-form-title">Sign in or register</h1>
+            <div className="login-page">
+                <form className="login-form" onSubmit={handleSubmit}>
+                    <h3>I'm a Returning Customer</h3>
+                    <ul className="login-info">
+                        <input placeholder="Email Address" type="text" value={email} onChange={(e) => {setEmail(e.target.value)}} required/>
 
-                <input placeholder="Password(Must be at least 8 characters)" type="password" value={password} onChange={(e) => {setPassword(e.target.value)}} required/>
+                        <input placeholder="Password" type="password" value={password} onChange={(e) => {setPassword(e.target.value)}} required/>
+                    </ul>
+                    <input id="signin-button" type="submit" value="Sign In"></input>
+                </form>
 
-                <input type="submit" value="Log In"></input>
-            </form>
-    
+                <label>I'm a New Customer
+                    <p>Creating an account is fast, easy, and free!</p>
+                    <br/>
+                    <Link to="/signup">Create Account</Link>
+                </label>
+            </div>
         </>
     )
 }
