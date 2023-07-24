@@ -1,13 +1,8 @@
 .login-page {
     display: flex;
     flex-direction: row;
-    justify-content: space-evenly;
-}
-
-.login-form {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
+    justify-content: center;
+    margin: auto;
 }
 
 .login-form-title {
@@ -45,6 +40,7 @@
     box-shadow: 0 1px 0 0 #ccc;
     padding: 35px 50px;
     display: flex;
+    flex-direction: column;
     align-items: flex-start;
 }
 
@@ -106,4 +102,16 @@
 
 .login-page a:hover {
     background-color: rgb(222, 231, 242);
+}
+
+.invalid-login-error {
+    font-family: 'Roboto', Arial, Helvetica, sans-serif;
+    font-size: 16px;
+    background-color: #f9e0e4;
+    border: 1px solid #d0011b;
+    width: 800px;
+    padding: 15px;
+    display: flex;
+    justify-content: flex-start;
+    margin: auto;
 }

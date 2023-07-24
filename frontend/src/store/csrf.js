@@ -9,7 +9,12 @@ export async function csrfFetch(url, options = {}) {
     }
 
     const res = await fetch(url, options);
-    return res;
+
+    if (res.status >= 400) {
+        throw res;
+    } else {
+        return res;
+    };
 
 }
 

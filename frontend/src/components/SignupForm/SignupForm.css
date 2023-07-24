@@ -1,34 +1,32 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400&display=swap");
 
-h1 {
+.signup-form h1 {
     font-family: 'Roboto', Arial, Helvetica, sans-serif;
-    font-size: 36px;
+    font-size: 34px;
     font-weight: 300;
     color: #333;
-    border: none;
-    text-align: center;
 }
 
-h3 {
+.signup-form h3 {
     color: #4caf50;
-    font-weight: 500;
+    font-weight: 700;
     margin-bottom: 15px;
-    font-size: 24px;
-    text-align: center;
+    margin-top: 20px;
+    font-size: 22px;
     font-family: 'Roboto', Arial, Helvetica, sans-serif;
+}
+
+.signup-page {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
 }
 
 .signup-form {
     display: flex;
     flex-direction: column;
-    align-items: center;
-}
-
-.signup-info {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    width: 500px;
+    align-items: flex-start;
+    width: 400px;
 }
 
 .signup-info input{
@@ -41,9 +39,7 @@ h3 {
     padding: 10px;
     box-shadow: none;
     border: 1px solid #999;
-    outline: none;
     border-radius: 2px;
-    margin-left: 50px;
     transition: all .15s ease-out;
 }
 
@@ -107,4 +103,20 @@ h3 {
     font-size: 12px;
     color: #555;
     padding: 10px;
+    margin: auto;
+}
+
+.signup-errors {
+    font-family: 'Roboto', Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    display: block;
+    color: #d0011b;
+    padding: 5px 20px 5px 0;
+}
+
+.signup-page-text {
+    font-family: 'Roboto', Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    padding: 200px 0 0 50px;
+    width: 300px;
 }

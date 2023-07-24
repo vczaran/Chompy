@@ -54,5 +54,6 @@ class ApplicationController < ActionController::API
     def invalid_authenticity_token
         render json: { message: 'Invalid authenticity token' }, status: :unprocessable_entity
     end
+    
 
 end
