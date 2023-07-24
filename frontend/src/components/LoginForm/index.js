@@ -33,8 +33,8 @@ function LoginForm() {
      
         return (
             <>
-            <h1 className="login-form-title">Sign in or register</h1>
-            {errors.length ? <p className="invalid-login-error">{errors}</p> : null}
+              <h1 className="login-form-title">Sign in or register</h1>
+              {errors.length ? <p className="invalid-login-error">{errors}</p> : null}
                 <div className="login-page">  
                     <form className="login-form" onSubmit={handleSubmit}>
                         <h3>I'm a Returning Customer</h3>
@@ -46,11 +46,12 @@ function LoginForm() {
                         <input id="signin-button" type="submit" value="Sign In"></input>
                     </form>
 
-                    <label>I'm a New Customer
-                        <p>Creating an account is fast, easy, and free!</p>
-                        <br/>
-                        <Link to="/register">Create Account</Link>
-                    </label>
+                    <p className="login-new-customer">
+                            <h3>I'm a New Customer</h3>
+                            <p>Creating an account is fast, easy, and free. You'll be able to manage your cart, browse products, write reviews, and more!</p>
+                            <br/>
+                            <Link to="/register">Create Account</Link>
+                    </p>
                 </div>
             </>
         )

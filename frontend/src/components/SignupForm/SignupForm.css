@@ -27,18 +27,19 @@
     flex-direction: column;
     align-items: flex-start;
     width: 400px;
+    margin-top: 20px;
 }
 
 .signup-info input{
     font-family: 'Roboto', Arial, Helvetica, sans-serif;
     font-weight: 400;
-    height: 30px;
+    height: 25px;
     width: 80%;
     margin: 5px;
-    color: #999;
+    color: black;
     padding: 10px;
     box-shadow: none;
-    border: 1px solid #999;
+    border: 1px solid #b9b6b6;
     border-radius: 2px;
     transition: all .15s ease-out;
 }
@@ -48,14 +49,19 @@
     cursor: default;
 }
 
+/* TODO: When input field clicked, border should stay orange below does not work */
+/* input:focus {
+    border-color: orange;
+} */
+
 .signup-button {
     background-color: #ef6c00;
     color: #fff;
     border: 1.6px solid #ef6c00;
     font-weight: 600;
     cursor: pointer;
-    height: 40px;
-    width: 300px;
+    height: 45px;
+    width: 85%;
     border-radius: 4px;
     font-size: 17px;
     margin-top: 20px;
@@ -117,6 +123,12 @@
 .signup-page-text {
     font-family: 'Roboto', Arial, Helvetica, sans-serif;
     font-size: 12px;
-    padding: 200px 0 0 50px;
+    font-weight: none;
+    padding: 175px 0 0 50px;
     width: 300px;
+}
+
+.signup-page-text li {
+    margin-left: 25px;
+    margin-top: 10px;
 }
