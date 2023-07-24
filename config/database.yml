@@ -81,6 +81,4 @@ test:
 #
 production:
   <<: *default
-  database: Chompy_production
-  username: Chompy
-  password: <%= ENV["CHOMPY_DATABASE_PASSWORD"] %>
+  url: <%= ENV['DATABASE_URL'] %>
