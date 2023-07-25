@@ -46,12 +46,12 @@ function LoginForm() {
                         <input id="signin-button" type="submit" value="Sign In"></input>
                     </form>
 
-                    <p className="login-new-customer">
+                    <div className="login-new-customer">
                             <h3>I'm a New Customer</h3>
                             <p>Creating an account is fast, easy, and free. You'll be able to manage your cart, browse products, write reviews, and more!</p>
                             <br/>
                             <Link to="/register">Create Account</Link>
-                    </p>
+                    </div>
                 </div>
             </>
         )

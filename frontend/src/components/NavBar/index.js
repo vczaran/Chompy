@@ -2,45 +2,28 @@ import "./NavBar.css";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import LogOut from "../LogOut";
+import { useSelector } from "react-redux";
 
 function DropDown () {
     const [show, setShow] = useState(false);
-    const loggedin = sessionStorage.getItem("currentUser");
+    const currentUser = useSelector(state => state.session.user);
+    const dropdownTitle = currentUser ? `Hello, ${currentUser.name}!`: "sign in";
 
-    // <button onMouseEnter={() => setShow(true)}
-    //         onMouseLeave={() => setShow(false)}>sign in   
-    // </button>
-
-    // if (show && !loggedin) {
-    //   return (
-    //     <div className="splash-nav-links">
-    //              <Link id="login" to="/login">Sign In</Link>
-    //               <br/>
-    //               <Link id="create" to="/register">Create an Account</Link>
-    //      </div>
-    //   )
-    // } else if (show && loggedin) {
-    //   return (
-    //     <div className="logout-from-dropdown">
-    //            <LogOut />
-    //     </div>
-    //   )
-    // }
     return (
       <div className="DropDown"  
         onMouseEnter={() => setShow(true)}
-        onMouseLeave={() => setShow(false)}>sign in
+        onMouseLeave={() => setShow(false)}>{dropdownTitle}
           {/* <button> 
             {/* put carrot here */}
           {/* </button> */}
           
-          {show && !loggedin && (
+          {show && !currentUser && (
             <div className="splash-nav-links">
               <Link id="login" to="/login">Sign In</Link>
               <Link id="create" to="/register">Create an Account</Link>
             </div>
           )}
-          {show && loggedin && (
+          {show && currentUser && (
           <div className="logout-from-dropdown">
             <LogOut />
           </div>

@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { signupUser } from "../../store/sessionReducer";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import './SignupForm.css';
 import { Link } from "react-router-dom";
 import { removeErrors, storeErrors } from "../../store/errors";
