@@ -1,6 +1,6 @@
 import "./NavBar.css";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import LogOut from "../LogOut";
 import { useSelector } from "react-redux";
 
@@ -35,9 +35,10 @@ function DropDown () {
   
 
 function NavBar () {
+  
     return (
         <header className="nav-bar">
-            <img className="logo" src="images/chompy-logo.png" alt="Logo"></img>
+            <Link to="/"><img className="logo" src="images/chompy-logo.png" alt="Logo"></img></Link>
             <input className="searchbar" type="text" placeholder="Search"/>
             <DropDown />
         </header>
