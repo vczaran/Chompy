@@ -79,7 +79,6 @@ export const loginUser = ({ email, password }) => async dispatch => {
       dispatch(setCurrentUser(data.user));
       return res;
     } else {
-      debugger
       dispatch(storeErrors(data.errors));
     }
   };
