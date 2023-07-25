@@ -7,7 +7,7 @@ function SplashPage () {
         <div className='SplashPage'>
             <h1>Popular Products</h1>
             <div className='product'>
-                <img src="images/hills-example.png"/>
+                <img src="images/hills-example.png" alt="example"/>
                 <p className="description">Hill's Science Diet Adult Small Bites Chicken & Barley Recipe Dry Dog Food</p>
                 <p className="price">$45.99</p>
             </div>

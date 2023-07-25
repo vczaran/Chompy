@@ -19,6 +19,7 @@ function LoginForm() {
 
     function handleSubmit(e) {
         e.preventDefault();
+        
         dispatch(loginUser({email, password}))
             .catch(async (res) => {
                 let data;
@@ -48,6 +49,7 @@ function LoginForm() {
                             <input placeholder="Password" type="password" value={password} onChange={(e) => {setPassword(e.target.value)}} required/>
                         </ul>
                         <input id="signin-button" type="submit" value="Sign In"></input>
+                        <button onClick={(() => {dispatch(loginUser({email: "demo@email.com", password: "password"}))})} id="signin-button">Demo Login</button>
                     </form>
 
                     <div className="login-new-customer">

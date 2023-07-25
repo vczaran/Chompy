@@ -1,6 +1,6 @@
 import "./NavBar.css";
 import { useState } from "react";
-import { Link, Redirect } from "react-router-dom";
+import { Link } from "react-router-dom";
 import LogOut from "../LogOut";
 import { useSelector } from "react-redux";
 
