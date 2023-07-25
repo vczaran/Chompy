@@ -8,9 +8,9 @@
 #  price          :float            not null
 #  rating         :float            not null
 #  details        :string
-#  flavor_options :string
-#  size_options   :string
-#  color_options  :string
+#  flavor_options :string           default([]), is an Array
+#  size_options   :string           default([]), is an Array
+#  color_options  :string           default([]), is an Array
 #  created_at     :datetime         not null
 #  updated_at     :datetime         not null
 #

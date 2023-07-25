@@ -6,9 +6,9 @@ class CreateProducts < ActiveRecord::Migration[7.0]
       t.float :price, null: false
       t.float :rating, null: false
       t.string :details
-      t.string :flavor_options
-      t.string :size_options
-      t.string :color_options
+      t.string :flavor_options, array: true, default: []
+      t.string :size_options, array: true, default: []
+      t.string :color_options, array: true, default: []
 
       t.timestamps
     end

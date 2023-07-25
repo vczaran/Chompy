@@ -20,9 +20,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_25_204937) do
     t.float "price", null: false
     t.float "rating", null: false
     t.string "details"
-    t.string "flavor_options"
-    t.string "size_options"
-    t.string "color_options"
+    t.string "flavor_options", default: [], array: true
+    t.string "size_options", default: [], array: true
+    t.string "color_options", default: [], array: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
