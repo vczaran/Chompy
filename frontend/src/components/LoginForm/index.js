@@ -4,7 +4,7 @@ import { useState } from "react";
 import { Redirect } from "react-router-dom";
 import "./LoginForm.css";
 import { Link } from "react-router-dom";
-import { storeErrors } from "../../store/errors";
+import { removeErrors, storeErrors } from "../../store/errors";
 
 function LoginForm() {
     const dispatch = useDispatch();
@@ -27,7 +27,11 @@ function LoginForm() {
                 } catch {
                 data = await res.text();
                 }
-                if (data?.errors) dispatch(storeErrors(data.errors));
+                if (data?.errors) {
+                    dispatch(storeErrors(data.errors));
+                } else {
+                    dispatch(removeErrors());
+                }
             });
     }
      
@@ -50,7 +54,7 @@ function LoginForm() {
                             <h3>I'm a New Customer</h3>
                             <p>Creating an account is fast, easy, and free. You'll be able to manage your cart, browse products, write reviews, and more!</p>
                             <br/>
-                            <Link to="/register">Create Account</Link>
+                            <Link onClick={(() => {dispatch(removeErrors())})} to="/register">Create Account</Link>
                     </div>
                 </div>
             </>

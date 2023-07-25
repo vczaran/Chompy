@@ -2,15 +2,15 @@
 
 .nav-bar {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-evenly;
+    align-items: center;
     background-color: rgb(36, 76, 187);
     height: 100px;
 }
 
 .logo {
     width: 200px;
-    margin-top: -45px;
-    margin-left: 350px;
+    height: 200px;
 }
 
 
@@ -96,4 +96,10 @@
     font-size: 12px;
     border-radius: 20px;
     cursor: pointer;
+}
+
+.searchbar {
+    width: 600px;
+    height: 35px;
+    border-radius: 5px;
 }
