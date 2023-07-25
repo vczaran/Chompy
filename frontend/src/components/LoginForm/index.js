@@ -4,7 +4,7 @@ import { useState } from "react";
 import { Redirect } from "react-router-dom";
 import "./LoginForm.css";
 import { Link } from "react-router-dom";
-import { storeErrors } from "../../store/errors";
+import { removeErrors, storeErrors } from "../../store/errors";
 
 function LoginForm() {
     const dispatch = useDispatch();
@@ -19,6 +19,7 @@ function LoginForm() {
 
     function handleSubmit(e) {
         e.preventDefault();
+        
         dispatch(loginUser({email, password}))
             .catch(async (res) => {
                 let data;
@@ -27,14 +28,18 @@ function LoginForm() {
                 } catch {
                 data = await res.text();
                 }
-                if (data?.errors) dispatch(storeErrors(data.errors));
+                if (data?.errors) {
+                    dispatch(storeErrors(data.errors));
+                } else {
+                    dispatch(removeErrors());
+                }
             });
     }
      
         return (
             <>
-            <h1 className="login-form-title">Sign in or register</h1>
-            {errors.length ? <p className="invalid-login-error">{errors}</p> : null}
+              <h1 className="login-form-title">Sign in or register</h1>
+              {errors.length ? <p className="invalid-login-error">{errors}</p> : null}
                 <div className="login-page">  
                     <form className="login-form" onSubmit={handleSubmit}>
                         <h3>I'm a Returning Customer</h3>
@@ -44,13 +49,15 @@ function LoginForm() {
                             <input placeholder="Password" type="password" value={password} onChange={(e) => {setPassword(e.target.value)}} required/>
                         </ul>
                         <input id="signin-button" type="submit" value="Sign In"></input>
+                        <button onClick={(() => {dispatch(loginUser({email: "demo@email.com", password: "password"}))})} id="signin-button">Demo Login</button>
                     </form>
 
-                    <label>I'm a New Customer
-                        <p>Creating an account is fast, easy, and free!</p>
-                        <br/>
-                        <Link to="/register">Create Account</Link>
-                    </label>
+                    <div className="login-new-customer">
+                            <h3>I'm a New Customer</h3>
+                            <p>Creating an account is fast, easy, and free. You'll be able to manage your cart, browse products, write reviews, and more!</p>
+                            <br/>
+                            <Link onClick={(() => {dispatch(removeErrors())})} to="/register">Create Account</Link>
+                    </div>
                 </div>
             </>
         )

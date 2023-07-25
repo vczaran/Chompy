@@ -3,7 +3,7 @@ import { signupUser } from "../../store/sessionReducer";
 import { useState } from "react";
 import './SignupForm.css';
 import { Link } from "react-router-dom";
-import { storeErrors } from "../../store/errors";
+import { removeErrors, storeErrors } from "../../store/errors";
 
 
 function SignupForm() {
@@ -25,10 +25,17 @@ function SignupForm() {
                 } catch {
                 data = await res.text();
                 }
-                if (data?.errors) dispatch(storeErrors(data.errors));
+                if (data?.errors) {
+                    dispatch(storeErrors(data.errors));
+                } else {
+                    dispatch(removeErrors());
+                }
             });
-        } 
+        } else {
+            dispatch(storeErrors({errors: "Passwords must match"}));
+        }
       };
+
     return (
         <>
         <div className="signup-page">
@@ -44,6 +51,8 @@ function SignupForm() {
                     {errors.length ? <p className="signup-errors">{errors[1]}</p> : null}
 
                     <input placeholder="Confirm Password" type="password" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} required/>
+                    {errors ? <p className="signup-errors">{errors.errors}</p> : null}
+
                 </ul>
 
                 <ul className="password-tips" style={{listStyle: 'disc'}}>Tips for a strong password:
@@ -54,7 +63,7 @@ function SignupForm() {
 
                 <input className="signup-button" type="submit" value="Create Account"></input>
                 <p className="sign-in-link-from-signup">Already have an account?
-                    <Link to="/login">Sign In</Link>
+                    <Link onClick={(() => {dispatch(removeErrors())})} to="/login">Sign In</Link>
                 </p>
             </form>
 

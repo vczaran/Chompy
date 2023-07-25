@@ -1,14 +1,13 @@
 import { Route, Switch } from "react-router-dom";
 import LoginForm from "./components/LoginForm";
-// import LogOut from "./components/LogOut";
 import SignupForm from "./components/SignupForm";
 import NavBar from "./components/NavBar";
+import SplashPage from "./components/SplashPage";
 
 
 function App() {
   return (
     <>
-      {/* <h1>Welcome to Chompy!</h1> */}
       <NavBar />
         <Switch>
           <Route path="/login" >
@@ -17,8 +16,10 @@ function App() {
           <Route path="/register" >
             <SignupForm />
           </Route>
+           <Route exact path="/" >
+            <SplashPage />
+          </Route>
         </Switch>
-        {/* <LogOut /> */}
   </>
   
   );
