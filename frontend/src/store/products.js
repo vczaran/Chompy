@@ -1,7 +1,7 @@
 
 
-const RECEIVE_PRODUCTS = "RECEIVE_PRODUCTS";
-const RECEIVE_PRODUCT = "RECEIVE_PRODUCT";
+const RECEIVE_PRODUCTS = "products/RECEIVE_PRODUCTS";
+const RECEIVE_PRODUCT = "products/RECEIVE_PRODUCT";
 
 export const receiveProducts = (products) => {
     return {
@@ -24,11 +24,11 @@ export const fetchProducts = () => async dispatch => {
     dispatch(receiveProducts(products));
 }
 
-// export const fetchProduct = (product) => async dispatch => {
-//     const res = await fetch(`api/products/${product.id}`);
-//     const product = await res.json();
-//     dispatch(receiveProduct(product));
-// }
+export const fetchProduct = (product) => async dispatch => {
+    const res = await fetch(`api/products/${product.id}`);
+    const product = await res.json();
+    dispatch(receiveProduct(product));
+}
 
 
 function productsReducer (state = {}, action) {
