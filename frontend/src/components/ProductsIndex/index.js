@@ -14,10 +14,11 @@ function ProductsIndex() {
     const ProductList = products.map(product => {
         return (
             <li key={product.id}>
-                <p>{product.name}</p>
                 <img src={product.imageUrl} />
+                <p>{product.name}</p>
                 <p>{product.rating}</p>
-                <p>{product.price}</p>
+                <p id="index-price">${product.price}</p>
+                <button className="add-to-cart-from-splash">Add to Cart</button>
             </li>
         );
     });
