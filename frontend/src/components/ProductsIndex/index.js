@@ -6,6 +6,7 @@ import './ProductsIndex.css';
 function ProductsIndex() {
     const products = useSelector(state => Object.values(state.products));
     const dispatch = useDispatch();
+
     useEffect(() => {
         dispatch(fetchProducts())
     }, [])
@@ -22,8 +23,8 @@ function ProductsIndex() {
     });
 
     return (
-        <div className="products-index">
-            <ul>
+        <div>
+            <ul className="products-index">
                 {ProductList}
             </ul>
         </div>
