@@ -3,6 +3,8 @@ import LoginForm from "./components/LoginForm";
 import SignupForm from "./components/SignupForm";
 import NavBar from "./components/NavBar";
 import SplashPage from "./components/SplashPage";
+import ProductsIndex from "./components/ProductsIndex";
+import ProductShow from "./components/ProductShow";
 
 
 function App() {
@@ -10,6 +12,12 @@ function App() {
     <>
       <NavBar />
         <Switch>
+          <Route path="/products/:productId" >
+            <ProductShow />
+          </Route>
+          <Route path="/products" >
+            <ProductsIndex />
+          </Route>
           <Route path="/login" >
             <LoginForm />
           </Route>

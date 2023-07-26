@@ -24,8 +24,8 @@ export const fetchProducts = () => async dispatch => {
     dispatch(receiveProducts(products));
 }
 
-export const fetchProduct = (product) => async dispatch => {
-    const res = await fetch(`api/products/${product.id}`);
+export const fetchProduct = (productId) => async dispatch => {
+    const res = await fetch(`api/products/${productId}`);
     const product = await res.json();
     dispatch(receiveProduct(product));
 }

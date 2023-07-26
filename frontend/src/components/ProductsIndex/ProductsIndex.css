@@ -22,18 +22,19 @@
 .products-index img {
 height: 50%;
 width: 75%;
+padding-bottom: 10px;
 }
 
 .products-index p {
     font-family: 'Poppins';
-    font-size: 14px;
+    font-size: 12px;
     padding: 5px;
 }
 
 #index-price {
     color: #bc2848;
     font-weight: 700;
-    font-size: 16px;
+    font-size: 15px;
 }
 
 .add-to-cart-from-splash {
@@ -53,4 +54,25 @@ width: 75%;
 .add-to-cart-from-splash:hover {
     cursor: pointer;
     background-color: #ef8126;
+}
+
+.star-rating {
+    display: flex;
+    flex-direction: row;
+    color: #FF9800;
+}
+
+#star {
+    width: 10px;
+}
+
+#link-to-show-from-product {
+    text-decoration: none;
+    color: black;
+}
+
+#link-to-show-from-product:hover {
+    color: navy;
+    text-decoration: underline;
+    cursor: pointer;
 }
