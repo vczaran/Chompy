@@ -1,37 +1,33 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchProducts } from "../../store/products";
+import './ProductsIndex.css';
 
 function ProductsIndex() {
     const products = useSelector(state => Object.values(state.products));
     const dispatch = useDispatch();
-
     useEffect(() => {
         dispatch(fetchProducts())
     }, [])
 
-    console.log(products)
-    // const ProductList = products.forEach(product => {
-    //     return (
-    //         <li key={product.id}>
-    //             <p>{product.name}</p>
-    //             <p>{product.rating}</p>
-    //             <p>{product.price}</p>
-    //             <p>{product.flavorOptions}</p>
-    //             <p>{product.sizeOptions}</p>   
-    //             <p>{product.details}</p>   
-    //         </li>
-    //     )
-    // });
+    const ProductList = products.map(product => {
+        return (
+            <li key={product.id}>
+                <p>{product.name}</p>
+                <img src={product.imageUrl} />
+                <p>{product.rating}</p>
+                <p>{product.price}</p>
+            </li>
+        );
+    });
 
     return (
         <div className="products-index">
             <ul>
-                {/* {ProductList} */}
-                {products}
+                {ProductList}
             </ul>
         </div>
-    )
+    );
 
 }
 
