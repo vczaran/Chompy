@@ -5,13 +5,17 @@ import { fetchProduct } from "../../store/products";
 import './ProductShow.css';
 
 function ProductShow () {
-    const productId = useParams().productId;
     const dispatch = useDispatch();
+    const productId = useParams().productId;
     const product = useSelector(state => state.products?.[productId]);
 
-    useEffect((productId) => {
+    useEffect(() => {
         dispatch(fetchProduct(productId))
     }, [productId])
+
+    if (!product) {
+        return null
+    }
 
     return (
         <>
