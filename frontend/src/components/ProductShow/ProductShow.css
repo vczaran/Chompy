@@ -20,6 +20,7 @@
 .product-show-info {
     display: flex;
     flex-direction: column;
+    justify-content: space-evenly;
     height: 300px;
     width: 400px;
     margin-left: 50px;
@@ -46,17 +47,6 @@
     font-weight: 550;
 }
 
-.quantity-dropdown {
-    padding: 10px;
-    border-color: gray;
-    border-radius: 7px;
-}
-
-.quantity-dropdown:hover {
-    cursor: pointer;
-    border-color: #1c49c2;
-}
-
 .add-to-cart-from-show {
     font-family: 'Poppins';
     background-color: #ef6c00;
@@ -79,10 +69,61 @@
     flex-direction: column;
     border: 2px solid #EEEEEE;
     border-radius: 7px;
-    padding: 20px;
-    height: 130px;
-    width: 250px;
-    margin-left: 40px;
+    padding: 15px;
+    height: 150px;
+    width: 260px;
+    margin-left: 40px; 
+}
+
+.inner-dropdown-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.inner-dropdown-container p {
+    display: flex;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+}
+
+.dropdown-buttons-container-show fieldset {
+    font-size: 10px;
+    color: gray;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    border: 1px solid gray;
+    border-radius: 7px;
+    margin: 20px;
+    height: 50px;
+    width: 75px;
+}
+
+.quantity-dropdown {
+    border: none;
+    padding: 5px;
+    width: 100%;
+}
+
+.quantity-dropdown:hover {
+    cursor: pointer;
+}
+
+.dropdown-buttons-container-show fieldset:hover {
+    border-color: #1c49c2;
+}
+
+.dropdown-buttons-container-show fieldset:focus {
+    border: 2px solid #1c49c2;
+    color: #1c49c2;
+}
+
+.quantity-dropdown:hover {
+    outline: none;
+}
+
+.quantity-dropdown:focus {
+    outline: none;
 }
 
 .product-show-info button {
@@ -115,6 +156,7 @@
     display: flex;
     justify-content: flex-start;
     margin: auto;
+    
 }
 
 .sizes {
