@@ -12,23 +12,23 @@ function App() {
     <>
       <NavBar />
         <Switch>
-          <Route exact path="/login" >
+          <Route path="/login" >
             <LoginForm />
           </Route>
 
-          <Route exact path="/register" >
+          <Route path="/register" >
             <SignupForm />
           </Route>
 
-          <Route exact path="/products/:productId" >
+          <Route path="/products/:productId" >
             <ProductShow />
           </Route>
 
-          <Route exact path="/products" >
+          <Route path="/products" >
             <ProductsIndex />
           </Route>
 
-           <Route exact path="/" >
+           <Route path="/" >
             <SplashPage />
           </Route>
         </Switch>

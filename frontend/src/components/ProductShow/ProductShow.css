@@ -1,4 +1,85 @@
+.product-show-page {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    border: 3px solid blue;
+}
+
+.product-show-info h1 {
+    font-family: 'Poppins';
+    font-size: 18px;
+    font-weight: 700;
+}
+
 #product-show-img {
-    height: 300px;
-    width: 200px;
+    width: 15%;
+    border: 3px solid red;
+}
+
+.product-show-info {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    border: 3px solid green;
+}
+
+#category {
+    font-size: 12px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    color: #1c49c2;
+}
+
+.show-divider {
+    background-color: #EEEEEE;
+    border: none;
+    height: 5px;
+    margin: 20px;
+}
+
+#price {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 18px;
+    color: #bc2848;
+    font-weight: 550;
+}
+
+.quantity-dropdown {
+    padding: 10px;
+    border-color: gray;
+    border-radius: 7px;
+}
+
+.quantity-dropdown:hover {
+    cursor: pointer;
+    border-color: #1c49c2;
+}
+
+.add-to-cart-from-show {
+    font-family: 'Poppins';
+    background-color: #ef6c00;
+    color: #fff;
+    border: 1.6px solid #ef6c00;
+    font-weight: 700;
+    width: 75%;
+    border-radius: 20px;
+    font-size: 12px;
+    padding: 10px;
+    margin-top: auto;
+    margin-bottom: 15px;
+}
+
+.add-to-cart-from-show:hover {
+    cursor: pointer;
+    background-color: #ef8126;
+}
+
+.dropdown-buttons-container-show {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #EEEEEE;
+    border-radius: 5px;
+    width: 330px;
+    height: 200px;
+
 }
