@@ -118,11 +118,7 @@
     color: #1c49c2;
 }
 
-.quantity-dropdown:hover {
-    outline: none;
-}
-
-.quantity-dropdown:focus {
+.quantity-dropdown:hover, .quantity-dropdown:focus {
     outline: none;
 }
 
@@ -142,27 +138,23 @@
     cursor: pointer;
 }
 
-.flavors button:focus {
+.flavors button:focus, .sizes button:focus {
     background-color: rgb(222, 234, 248);
     border: 2px solid  #1c49c2;;
 }
 
-.sizes button:focus {
-    background-color: rgb(222, 234, 248);
-    border: 2px solid  #1c49c2;;
+
+.flavors p, .sizes p {
+    color: #4d4d4d;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 14px;
+    width: 100%;
 }
 
-.flavors {
+.sizes, .flavors {
     display: flex;
+    flex-wrap: wrap;
     justify-content: flex-start;
-    margin: auto;
-    
-}
-
-.sizes {
-    display: flex;
-    justify-content: flex-start;
-    margin: auto;
 }
 
 .product-show-details h2 {
