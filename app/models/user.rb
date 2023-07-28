@@ -21,7 +21,8 @@ class User < ApplicationRecord
     validates :session_token, presence: true, uniqueness: true
     validates :password, length: { minimum: 8, allow_nil: true }
 
-    has_many :cart_items
+    # has_many :cart_items,
+    # dependent: :destroy
 
 
     def self.find_by_credentials(email, password)
