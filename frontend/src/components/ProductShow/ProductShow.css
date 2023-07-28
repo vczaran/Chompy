@@ -157,6 +157,54 @@
     justify-content: flex-start;
 }
 
+/* .flavors input {
+    background-color: white;
+    color: #1c49c2;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 14px;
+    border: 1px solid rgb(222, 234, 248);
+    padding: 10px;
+    border-radius: 7px;
+    margin: 5px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    width: 100%;
+  }
+
+  .flavors label {
+    display: inline;
+  } */
+
+  /* .flavors input {
+    display: none;
+  }
+
+  .flavors input:checked, .flavors label {
+    background-color: rgb(222, 234, 248);
+    border: 2px solid  #1c49c2;;
+  }
+
+  .flavors input:hover, .flavors label:hover {
+    background-color: rgb(222, 234, 248);
+    cursor: pointer;
+  }
+
+  .flavors label {
+    background-color: white;
+    color: #1c49c2;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 14px;
+    border: 1px solid rgb(222, 234, 248);
+    padding: 10px;
+    border-radius: 7px;
+    margin: 5px;
+    position: relative;
+    left: -13px;
+    top: -3px;
+    font-size: 8pt;
+    opacity: .5;
+  } */
+
 .product-show-details h2 {
     font-family: 'Poppins';
     font-size: 18px;

@@ -29,6 +29,14 @@ function ProductShow () {
         )
     })
 
+    // const FlavorOptions = product.flavorOptions.map(flavor => {
+    //     return (
+    //         <label>{flavor}
+    //             <input type="radio" name="flavor" value={flavor}/>
+    //         </label>
+    //     )
+    // })
+
 
     return (
         <>
