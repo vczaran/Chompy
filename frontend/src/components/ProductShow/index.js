@@ -17,25 +17,29 @@ function ProductShow () {
         return null
     }
 
+
+    let selected = {flavor: null, size: null};
+    
     const FlavorOptions = product.flavorOptions.map(flavor => {
         return (
-            <button name="flavor">{flavor}</button>
+            <button name="flavor" onClick ={(e) => { 
+                selected.flavor?.classList.remove('selected');
+                e.target.classList.add('selected');
+                selected.flavor = e.target;
+            }}>{flavor}</button>
         )
     })
 
     const SizeOptions = product.sizeOptions.map(size => {
         return (
-            <button name="size">{size}</button>
+            <button name="size" onClick={(e)=>{
+                selected.size?.classList.remove('selected');
+                e.target.classList.add('selected');
+                selected.size = e.target;
+            }}
+            >{size}</button>
         )
     })
-
-    // const FlavorOptions = product.flavorOptions.map(flavor => {
-    //     return (
-    //         <label>{flavor}
-    //             <input type="radio" name="flavor" value={flavor}/>
-    //         </label>
-    //     )
-    // })
 
 
     return (

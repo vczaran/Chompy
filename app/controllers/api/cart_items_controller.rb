@@ -1,4 +1,5 @@
 class Api::CartItemsController < ApplicationController
+    before_action :require_logged_in
 
     def create
         @cart = CartItem.find_by(user_id: params[:user_id]) || CartItem.new(cart_params)
@@ -12,7 +13,7 @@ class Api::CartItemsController < ApplicationController
     end
 
     def show
-        @cartitems = CartItem.all
+        @cart = CartItem.all
         render 'api/cartitems/show'
     end
 
