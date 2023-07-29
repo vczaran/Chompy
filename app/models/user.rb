@@ -24,11 +24,6 @@ class User < ApplicationRecord
     has_many :cart_items,
     dependent: :destroy
 
-    def self.find_cart_items
-        @cart_items = CartItem.all.filter(item => current_user.id === item.user_id)
-        return @cart_items
-    end
-
     def self.find_by_credentials(email, password)
         user = User.find_by(email: email)
         user&.authenticate(password) ? user : nil

@@ -1,12 +1,19 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchProducts } from "../../store/products";
 import { Link } from "react-router-dom";
 import './ProductsIndex.css';
+import { addCartItem } from "../../store/cart";
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+
 
 function ProductsIndex() {
     const products = useSelector(state => Object.values(state.products));
     const dispatch = useDispatch();
+
+    const [quantity, setQuantity] = useState(1);
+    const history = useHistory();
+    const currentUser = useSelector(state => state.session.user);
 
     useEffect(() => {
         dispatch(fetchProducts())
@@ -24,7 +31,20 @@ function ProductsIndex() {
         )
     }
 
+    function handleAdd () {
+        if (!currentUser) {
+            history.push('/login')
+        } else {
+            let userId = currentUser.id;
+            // let productId = products.product.id;
+            // let productId = product.id;
+            const cartItem = { quantity, userId, productId: 3};
+            dispatch(addCartItem(cartItem));
+        }
+    }
+
     const ProductList = products.map(product => {
+    
         return (
             <li key={product.id}>
                 <img src={product.imageUrl} />
@@ -32,7 +52,7 @@ function ProductsIndex() {
                 <Stars />
                 <p>{product.rating}</p>
                 <p id="index-price">${product.price}</p>
-                <button className="add-to-cart-from-splash">Add to Cart</button>
+                <button className="add-to-cart-from-splash" onClick={handleAdd}>Add to Cart</button>
             </li>
         );
     });
