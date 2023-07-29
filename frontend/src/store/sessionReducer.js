@@ -1,14 +1,19 @@
 import { csrfFetch } from "./csrf";
 import { storeErrors } from "./errors";
 
-const SET_CURRENT_USER = 'session/setCurrentUser';
-const REMOVE_CURRENT_USER = 'session/removeCurrentUser';
-
+const SET_CURRENT_USER = 'session/SET_CURRENT_USER';
+const REMOVE_CURRENT_USER = 'session/REMOVE_CURRENT_USER';
+const SET_CART = 'session/SET_CART';
 
 const setCurrentUser = (user) => ({
     type: SET_CURRENT_USER,
     user
 });
+
+const setCart = (cartItems) => ({
+  type: SET_CART,
+  cart: [cartItems]
+})
 
 
 const removeCurrentUser = () => ({
@@ -37,6 +42,7 @@ export const loginUser = ({ email, password }) => async dispatch => {
     if (res.ok) {
       storeCurrentUser(data.user);
       dispatch(setCurrentUser(data.user));
+      dispatch(setCart(data.user.cartItems));
       return res;
     } else {
       dispatch(storeErrors(data.errors));
@@ -61,6 +67,7 @@ export const loginUser = ({ email, password }) => async dispatch => {
     if (res.ok) {
       storeCurrentUser(data.user);
       dispatch(setCurrentUser(data.user));
+      dispatch(setCart(data.user.cartItems));
       return res;
     } else {
       dispatch(storeErrors(data.errors));
@@ -77,6 +84,7 @@ export const loginUser = ({ email, password }) => async dispatch => {
     if (res.ok) {
       storeCurrentUser(data.user);
       dispatch(setCurrentUser(data.user));
+      dispatch(setCart(data.user.cartItems));
       return res;
     } else {
       dispatch(storeErrors(data.errors));
@@ -95,6 +103,8 @@ export const loginUser = ({ email, password }) => async dispatch => {
         return { ...newState, user: action.user };
       case REMOVE_CURRENT_USER:
         return { ...newState, user: null };
+      case SET_CART:
+        return { ...newState, cart: action.cart};
       default:
         return state;
     }
