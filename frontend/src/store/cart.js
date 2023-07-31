@@ -3,7 +3,7 @@ import { SET_CURRENT_USER } from "./sessionReducer";
 
 const RECEIVE_CART = 'cart/RECEIVE_CART';
 const ADD_PRODUCT = 'cart/ADD_PRODUCT';
-// const REMOVE_PRODUCT = 'cart/REMOVE_PRODUCT';
+const REMOVE_PRODUCT = 'cart/REMOVE_PRODUCT';
 // // const UPDATE_PRODUCT = 'cart/UPDATE_PRODUCT';
 const RESET_CART = 'cart/RESET_CART';
 
@@ -21,12 +21,12 @@ const receiveCart = (cart) => {
     };
 }
 
-// const removeProduct = (productId) => {
-//     return {
-//         type: REMOVE_PRODUCT,
-//         productId
-//     };
-// };
+export const removeProduct = (cartItemId) => {
+    return {
+        type: REMOVE_PRODUCT,
+        cartItemId
+    };
+};
 
 // // const updateProduct = (productId, quantity) => {
 // //     if (quantity < 1) return removeProduct(productId);
@@ -52,9 +52,6 @@ export const fetchCartItems = (userId) => async dispatch => {
     dispatch(receiveCart(data.cart));
 }
 
-// // export const storeCart = (cartItems) => async dispatch => {
-// //     dispatch(setCart(cartItems));
-// // };
 
 export const addCartItem = (cartItem) => async dispatch => {
     const res = await csrfFetch('/api/cart_items', {
@@ -63,18 +60,15 @@ export const addCartItem = (cartItem) => async dispatch => {
     })
     const data = await res.json();
     dispatch(addProduct(data.cart));
-    // sessionStorage.setItem("cart", data);
 }
 
-// export const deleteCartItem = (cartItemId) => async dispatch => {
-//     await csrfFetch(`/api/cart_items/${cartItemId}`, {
-//         method: 'DELETE'
-//     })
-//     dispatch(removeProduct(cartItemId));
-// }
+export const deleteCartItem = (cartItemId) => async dispatch => {
+    await csrfFetch(`/api/cart_items/${cartItemId}`, {
+        method: 'DELETE'
+    })
+    // dispatch(removeProduct(cartItemId));
+}
 
-// const initialState = JSON.parse(sessionStorage.getItem("cart"));
-// const initialState = {};
 
 function cartReducer ( state = {}, action ) {
     const newState = {...state};
@@ -91,11 +85,9 @@ function cartReducer ( state = {}, action ) {
             return action.cart;
         case SET_CURRENT_USER:
             return { ...newState, ...action.cart};
-            // return {...newState, ...action.cartItem};
-            // return newState;
-        // case REMOVE_PRODUCT:
-        //     delete newState[action.productId];
-        //     return newState;
+        case REMOVE_PRODUCT:
+            delete newState[action.cartItemId];
+            return newState;
         // case UPDATE_PRODUCT:
         //     return {...newState, {action.id, action.userId, action.productId, action.quantity}}
         default:

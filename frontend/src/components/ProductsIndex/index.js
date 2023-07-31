@@ -31,14 +31,13 @@ function ProductsIndex() {
         )
     }
 
-    function handleAdd () {
+    function handleAdd (productId) {
         if (!currentUser) {
             history.push('/login')
         } else {
             let userId = currentUser.id;
-            // // let productId = products.product.id;
-            // // let productId = product.id;
-            const cartItem = { quantity, userId, productId: 3};
+            
+            const cartItem = { quantity, userId, productId};
             dispatch(addCartItem(cartItem));
         }
     }
@@ -52,7 +51,7 @@ function ProductsIndex() {
                 <Stars />
                 <p>{product.rating}</p>
                 <p id="index-price">${product.price}</p>
-                <button className="add-to-cart-from-splash" onClick={handleAdd}>Add to Cart</button>
+                <button className="add-to-cart-from-splash" onClick={() => handleAdd(product.id)}>Add to Cart</button>
             </li>
         );
     });

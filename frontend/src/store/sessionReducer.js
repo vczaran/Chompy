@@ -23,10 +23,10 @@ const storeCSRFToken = res => {
 const storeCurrentUser = (user, cart) => {
     if (user) {
       sessionStorage.setItem("currentUser", JSON.stringify(user));
-      sessionStorage.setItem("cart", JSON.stringify(cart));
+      // sessionStorage.setItem("cart", JSON.stringify(cart));
     } else {
       sessionStorage.removeItem("currentUser");
-      sessionStorage.removeItem("cart");
+      // sessionStorage.removeItem("cart");
     };
   }
 
@@ -90,8 +90,8 @@ export const loginUser = ({ email, password }) => async dispatch => {
   };
 
   const initialState = { 
-    user: JSON.parse(sessionStorage.getItem("currentUser")),
-    cart: JSON.parse(sessionStorage.getItem("cart"))
+    user: JSON.parse(sessionStorage.getItem("currentUser"))
+    // cart: JSON.parse(sessionStorage.getItem("cart"))
   };
 
   

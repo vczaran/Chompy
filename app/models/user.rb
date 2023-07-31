@@ -29,10 +29,6 @@ class User < ApplicationRecord
         user&.authenticate(password) ? user : nil
     end
 
-    # def find_cart_items
-    #     @cart_items = CartItem.where(user_id: self.id)
-    #     return @cart_items
-    # end
 
     def reset_session_token
         self.session_token = generate_session_token

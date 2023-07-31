@@ -7,7 +7,6 @@ class Api::CartItemsController < ApplicationController
         @user = current_user
      
         if @cart_item.save
-            # render 'api/users/show'
             render 'api/cart_items/show'
         else
             render json: {errors: ""}, status: 422
