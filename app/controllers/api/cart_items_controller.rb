@@ -3,19 +3,14 @@ class Api::CartItemsController < ApplicationController
 
     def create
         @cart_item = CartItem.new(cart_params)
+        @user = current_user
 
         if @cart_item.save
-            render 'api/cart_items/index'
+         render 'api/users/show'
+        else
+            render json: {errors: ""}, status: 422
         end
-        # else
-        #     render json: status: 422
-        # end
-
-    end
-
-    def index
-        @cart_items = current_user.cart_items
-        render 'api/cart_items/index'
+     
     end
 
     def update
@@ -33,7 +28,7 @@ class Api::CartItemsController < ApplicationController
     private
 
     def cart_params
-        params.permit(:user_id, :product_id, :quantity)
+        params.permit(:user_id, :product_id, :quantity, :color, :size, :flavor)
     end
 
 end
