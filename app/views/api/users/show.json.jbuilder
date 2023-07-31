@@ -3,7 +3,7 @@ json.user do
 end
 
 json.cart do
-    @user.find_cart_items.each do |item|
+    @user.cart_items.each do |item|
         json.set! item.id do
             json.extract! item, :id, :quantity, :user_id, :product_id, :size, :color, :flavor
         end

@@ -1,10 +1,11 @@
 import { csrfFetch } from "./csrf";
+import { SET_CURRENT_USER } from "./sessionReducer";
 
 const RECEIVE_CART = 'cart/RECEIVE_CART';
 const ADD_PRODUCT = 'cart/ADD_PRODUCT';
 // const REMOVE_PRODUCT = 'cart/REMOVE_PRODUCT';
 // // const UPDATE_PRODUCT = 'cart/UPDATE_PRODUCT';
-// // const RESET_CART = 'cart/RESET_CART';
+const RESET_CART = 'cart/RESET_CART';
 
 const addProduct = (cartItem) => {
     return {
@@ -37,15 +38,14 @@ const receiveCart = (cart) => {
 // //     };
 // // };
 
-// // export const resetCart = () => {
-// //     return {
-// //         type: RESET_CART,
-// //         cart: []
-// //     };
-// // };
+export const resetCart = () => {
+    return {
+        type: RESET_CART,
+        cart: null
+    };
+};
 
 export const fetchCartItems = (userId) => async dispatch => {
-    debugger
     const res = await csrfFetch(`/api/users/${userId}`)
     const data = await res.json();
 
@@ -62,7 +62,6 @@ export const addCartItem = (cartItem) => async dispatch => {
         body: JSON.stringify(cartItem)
     })
     const data = await res.json();
-    debugger
     dispatch(addProduct(data.cart));
     // sessionStorage.setItem("cart", data);
 }
@@ -74,17 +73,25 @@ export const addCartItem = (cartItem) => async dispatch => {
 //     dispatch(removeProduct(cartItemId));
 // }
 
-const initialState = JSON.parse(sessionStorage.getItem("cart"));
+// const initialState = JSON.parse(sessionStorage.getItem("cart"));
+// const initialState = {};
 
-function cartReducer ( state = initialState, action ) {
+function cartReducer ( state = {}, action ) {
     const newState = {...state};
 
     switch(action.type) {
         case RECEIVE_CART:
+            sessionStorage.setItem("cart", JSON.stringify(action.cart));
             return {...newState, ...action.cart};
         case ADD_PRODUCT:
-            sessionStorage.setItem("cart", action.cart);
-            return {...newState, ...action.cart}
+            sessionStorage.setItem("cart", JSON.stringify(action.cartItem));
+            newState[action.cartItem.id] = action.cartItem;
+            return newState;
+        case RESET_CART:
+            return action.cart;
+        case SET_CURRENT_USER:
+            return { ...newState, ...action.cart};
+            // return {...newState, ...action.cartItem};
             // return newState;
         // case REMOVE_PRODUCT:
         //     delete newState[action.productId];

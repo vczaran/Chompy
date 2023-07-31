@@ -32,8 +32,10 @@ function initializeApp() {
     );
   } 
 
-if (sessionStorage.getItem("currentUser") === null || sessionStorage.getItem("X-CSRF-Token") === null) {
   store.dispatch(restoreSession()).then(initializeApp());
-  } else {
-    initializeApp();
-  };
+
+// if (sessionStorage.getItem("currentUser") === null || sessionStorage.getItem("X-CSRF-Token") === null) {
+//   store.dispatch(restoreSession()).then(initializeApp());
+//   } else {
+//     initializeApp();
+//   };
