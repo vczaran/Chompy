@@ -36,8 +36,8 @@ function ProductsIndex() {
             history.push('/login')
         } else {
             let userId = currentUser.id;
-            // let productId = products.product.id;
-            // let productId = product.id;
+            // // let productId = products.product.id;
+            // // let productId = product.id;
             const cartItem = { quantity, userId, productId: 3};
             dispatch(addCartItem(cartItem));
         }

@@ -1,3 +1,4 @@
+import { fetchCartItems } from "./cart";
 import { csrfFetch } from "./csrf";
 import { storeErrors } from "./errors";
 
@@ -38,6 +39,7 @@ export const loginUser = ({ email, password }) => async dispatch => {
     if (res.ok) {
       storeCurrentUser(data.user, data.cart);
       dispatch(setCurrentUser(data.user, data.cart));
+      dispatch(fetchCartItems(data.user.id));
       return res;
     } else {
       dispatch(storeErrors(data.errors));
@@ -62,6 +64,10 @@ export const loginUser = ({ email, password }) => async dispatch => {
     if (res.ok) {
       storeCurrentUser(data.user, data.cart);
       dispatch(setCurrentUser(data.user, data.cart));
+      // if (sessionStorage.getItem("currentUser")) {
+      //   debugger
+      //   dispatch(fetchCartItems(data.user.id));
+      // };
       return res;
     } else {
       dispatch(storeErrors(data.errors));
@@ -78,6 +84,7 @@ export const loginUser = ({ email, password }) => async dispatch => {
     if (res.ok) {
       storeCurrentUser(data.user, data.cart);
       dispatch(setCurrentUser(data.user, data.cart));
+      dispatch(fetchCartItems(data.user.id));
       return res;
     } else {
       dispatch(storeErrors(data.errors));
@@ -88,13 +95,14 @@ export const loginUser = ({ email, password }) => async dispatch => {
     user: JSON.parse(sessionStorage.getItem("currentUser")),
     cart: JSON.parse(sessionStorage.getItem("cart"))
   };
+
   
   const sessionReducer = (state = initialState, action) => {
     const newState = {...state};
 
     switch (action.type) {
       case SET_CURRENT_USER:
-        return { ...newState, user: action.user, cart: action.cart };
+        return { ...newState, user: action.user, cart: action.cart};
       case REMOVE_CURRENT_USER:
         return { ...newState, user: null, cart: null };
       default:

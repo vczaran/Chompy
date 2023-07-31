@@ -3,6 +3,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import LogOut from "../LogOut";
 import { useSelector } from "react-redux";
+import Cart from "../Cart";
 
 function DropDown () {
     const [show, setShow] = useState(false);
@@ -10,6 +11,7 @@ function DropDown () {
     const dropdownTitle = currentUser ? `Hello, ${currentUser.name}!`: "sign in";
 
     return (
+      <>
       <div className="DropDown"  
         onMouseEnter={() => setShow(true)}
         onMouseLeave={() => setShow(false)}>{dropdownTitle}
@@ -30,6 +32,13 @@ function DropDown () {
           )}
           
         </div>
+
+        <div className="cart">
+          <Cart />
+        </div>
+
+        </>
+  
     );
   }
   

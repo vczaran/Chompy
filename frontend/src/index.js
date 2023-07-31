@@ -7,6 +7,7 @@ import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
 import { csrfFetch } from './store/csrf';
 import { restoreSession } from './store/sessionReducer';
+import { fetchCartItems } from './store/cart';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 const store = configureStore();
@@ -14,6 +15,7 @@ const store = configureStore();
 if (process.env.NODE_ENV !== "production") {
   window.store = store;
   window.csrfFetch = csrfFetch;
+  window.fetchCartItems = fetchCartItems;
 }
 
 
