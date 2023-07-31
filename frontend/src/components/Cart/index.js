@@ -1,27 +1,43 @@
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import CartItem from "./CartItem";
+import './Cart.css';
+import { useState } from "react";
 
 
 export default function Cart () {
     let currentUser = useSelector(state => state.session.user);
     const cart = useSelector(state => state.cart);
-    const products = useSelector(state => state.products);
+    const [show, setShow] = useState(false);
 
     if (currentUser) {
         return (
-            <>
-                <h1>I am ze cart</h1>
+            <div className="cart"
+                onMouseEnter={() => setShow(true)}
+                onMouseLeave={() => setShow(false)}>
+                <i class="fa-solid fa-cart-shopping fa-xl" style={{color: "#ffffff"}}></i>
+                <h1>cart</h1>
+
+                {show && 
                     <ul>
                       {Object.values(cart).map( item => <CartItem item={item}/>)}
-                    </ul>       
-            </>
+                    </ul>  
+                }     
+            </div>
         )
         } else {
             return (
-                <>
-                    <h1>I am ze cart</h1>
-                    <p>Empty</p>
-                </>
+                <div className="cart"
+                onMouseEnter={() => setShow(true)}
+                onMouseLeave={() => setShow(false)}>
+                    <i class="fa-solid fa-cart-shopping fa-xl" style={{color: "#ffffff"}}></i>
+                    <h1>cart</h1>
+
+                    {show &&
+                        <ul>
+                            Your cart is empty.
+                        </ul>
+                    }
+                </div>
         )
     }
 }
