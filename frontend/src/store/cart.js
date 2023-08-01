@@ -4,7 +4,7 @@ import { SET_CURRENT_USER } from "./sessionReducer";
 const RECEIVE_CART = 'cart/RECEIVE_CART';
 const ADD_PRODUCT = 'cart/ADD_PRODUCT';
 const REMOVE_PRODUCT = 'cart/REMOVE_PRODUCT';
-// // const UPDATE_PRODUCT = 'cart/UPDATE_PRODUCT';
+const UPDATE_PRODUCT = 'cart/UPDATE_PRODUCT';
 const RESET_CART = 'cart/RESET_CART';
 
 const addProduct = (cartItem) => {
@@ -28,20 +28,20 @@ export const removeProduct = (cartItemId) => {
     };
 };
 
-// // const updateProduct = (productId, quantity) => {
-// //     if (quantity < 1) return removeProduct(productId);
+const updateProduct = (cartItemId, quantity) => {
+    if (quantity < 1) return removeProduct(cartItemId);
 
-// //     return {
-// //         type: UPDATE_PRODUCT,
-// //         productId,
-// //         quantity
-// //     };
-// // };
+    return {
+        type: UPDATE_PRODUCT,
+        cartItemId,
+        quantity
+    };
+};
 
 export const resetCart = () => {
     return {
         type: RESET_CART,
-        cart: null
+        cart: {}
     };
 };
 
@@ -52,6 +52,14 @@ export const fetchCartItems = (userId) => async dispatch => {
     dispatch(receiveCart(data.cart));
 }
 
+export const updateCartItem = (cartItemId, quantity) => async dispatch => {
+    const res = await csrfFetch(`/api/cart_items/${cartItemId}`, {
+        method: 'PATCH',
+        body: JSON.stringify(quantity)
+    })
+ 
+    dispatch(updateProduct(cartItemId, quantity));
+}
 
 export const addCartItem = (cartItem) => async dispatch => {
     const res = await csrfFetch('/api/cart_items', {
@@ -93,8 +101,9 @@ function cartReducer ( state = {}, action ) {
         case REMOVE_PRODUCT:
             delete newState[action.cartItemId];
             return newState;
-        // case UPDATE_PRODUCT:
-        //     return {...newState, {action.id, action.userId, action.productId, action.quantity}}
+        case UPDATE_PRODUCT:
+            newState[action.cartItemId].quantity = action.quantity;
+            return newState;
         default:
             return state;
     }

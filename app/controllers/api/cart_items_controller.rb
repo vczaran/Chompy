@@ -2,7 +2,6 @@ class Api::CartItemsController < ApplicationController
     before_action :require_logged_in
 
     def create
-        # @cart_item = CartItem.find_by(user_id: current_user.id, product_id: cart_params[:product_id])
         @cart_item = CartItem.new(cart_params)
         @user = current_user
      
@@ -15,10 +14,10 @@ class Api::CartItemsController < ApplicationController
     end
 
     def update
-        @cart_item = CartItem.find_by(user_id: params[:user_id], product_id: cart_params[:product_id])
+        @cart_item = CartItem.find(params[:id])
         id = @cart_item.id
-        new_quantity = params[:quantity].to_i
-        @cart_item.update!(id, :quantity => new_quantity)
+        new_quantity = params[:_json].to_i
+        @cart_item.update!(:quantity => new_quantity)
     end
 
     def destroy

@@ -81,19 +81,19 @@ function ProductShow () {
                 <div className="inner-dropdown-container">
                     <fieldset>
                         <legend>Quantity</legend>
-                        <select className="quantity-dropdown" name="quantity">
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4</option>
-                            <option>5</option>
-                            <option>6</option>
-                            <option>7</option>
-                            <option>8</option>
-                            <option>9</option>
-                            <option>10</option>
-                            <option>11</option>
-                            <option>12</option>
+                        <select className="quantity-dropdown" onChange={(e) => {setQuantity(e.target.value)}} defaultValue={quantity}>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            <option value="10">10</option>
+                            <option value="11">11</option>
+                            <option value="12">12</option>
                         </select>
                     </fieldset>
                     <p> FREE 1-3 day delivery </p>
