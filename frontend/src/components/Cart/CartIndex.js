@@ -1,16 +1,32 @@
 import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import CartIndexItem from "./CartIndexItem";
+import { useState } from "react";
 import './Cart.css';
+import { checkout, resetCart } from "../../store/cart";
 
 export default function CartIndex () {
+    let currentUser = useSelector(state => state.session.user);
     const cart = useSelector(state => state.cart);
-    
-    if (Object.keys(cart).length) {
+    const products = useSelector(state => state.products);
+    const dispatch = useDispatch();
+    // const items = products.select(id === cart.productId);
+    // const items = products.map ( item => item.id )
+
+    function handleCheckout () {
+        dispatch(resetCart());
+        dispatch(checkout(currentUser.id));
+    }
+
+    if (cart && Object.keys(cart).length) {
     return (
-        <ul className="cart-index">
-            {Object.values(cart).map( item => <CartIndexItem item={item}/>)}
-        </ul>  
+        <div className="cart-index">
+            {/* <h1>Subtotal: ${total} </h1> */}
+            <ul className="cart-items-list"> 
+                {Object.values(cart).map( item => <CartIndexItem item={item}/>)}
+            </ul>  
+            <button onClick={handleCheckout}>Checkout</button>
+        </div>
     )
     } else {
         return (

@@ -68,6 +68,12 @@ export const deleteCartItem = (cartItemId) => async dispatch => {
     })
 }
 
+export const checkout = (userId) => async dispatch => {
+    await csrfFetch(`/api/users/${userId}`, {
+        method: 'DELETE'
+    })
+}
+
 
 function cartReducer ( state = {}, action ) {
     const newState = {...state};
