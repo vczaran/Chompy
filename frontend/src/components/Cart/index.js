@@ -2,7 +2,7 @@ import { useSelector } from "react-redux";
 import CartItem from "./CartItem";
 import './Cart.css';
 import { useState } from "react";
-
+import { Link } from "react-router-dom";
 
 export default function Cart () {
     let currentUser = useSelector(state => state.session.user);
@@ -15,7 +15,7 @@ export default function Cart () {
                 onMouseEnter={() => setShow(true)}
                 onMouseLeave={() => setShow(false)}>
                 <i class="fa-solid fa-cart-shopping fa-xl" style={{color: "#ffffff"}}></i>
-                <h1>cart</h1>
+                <Link to="/cart"><h1>cart</h1></Link>
 
                 {show && 
                     <ul>

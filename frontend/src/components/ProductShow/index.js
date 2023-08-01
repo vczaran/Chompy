@@ -1,13 +1,19 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux"
-import { useParams } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
 import { fetchProduct } from "../../store/products";
 import './ProductShow.css';
+import { addCartItem } from "../../store/cart";
+
 
 function ProductShow () {
     const dispatch = useDispatch();
     const productId = useParams().productId;
     const product = useSelector(state => state.products?.[productId]);
+
+    const [quantity, setQuantity] = useState(1);
+    const history = useHistory();
+    const currentUser = useSelector(state => state.session.user);
 
     useEffect(() => {
         dispatch(fetchProduct(productId))
@@ -15,6 +21,17 @@ function ProductShow () {
 
     if (!product) {
         return null
+    }
+
+    function handleAdd () {
+        if (!currentUser) {
+            history.push('/login')
+        } else {
+            let userId = currentUser.id;
+            
+            const cartItem = { quantity, userId, productId};
+            dispatch(addCartItem(cartItem));
+        }
     }
 
 
@@ -81,7 +98,7 @@ function ProductShow () {
                     </fieldset>
                     <p> FREE 1-3 day delivery </p>
                 </div>
-                <button className="add-to-cart-from-show">Add to Cart</button>
+                <button className="add-to-cart-from-show" onClick={handleAdd}>Add to Cart</button>
             </div>
         </div>
         <hr className="show-divider"/>

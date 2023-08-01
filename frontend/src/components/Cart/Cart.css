@@ -24,11 +24,42 @@
     align-items: center;
     position: absolute;
     right: 0px;
-    top: 0px;
+    top: 30px;
     width: 15vw;
     height: 10vw;
     background-color: white;
     text-align: center;
     box-shadow: 0 1px 3px 1px black;
     border-radius: 3px;
+}
+
+.empty-cart-page {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.empty-cart-page h1 {
+    font-family: 'Poppins';
+    font-size: 32px;
+    font-weight: 700;
+}
+
+.empty-cart-page a {
+    text-decoration: none;
+    font-family: 'Poppins';
+    background-color: #ef6c00;
+    color: #fff;
+    border: 1.6px solid #ef6c00;
+    font-weight: 700;
+    border-radius: 20px;
+    font-size: 12px;
+    padding: 10px;
+}
+
+.empty-cart-page a:hover {
+    cursor: pointer;
+    background-color: #ef8126;
 }

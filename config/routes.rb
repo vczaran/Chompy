@@ -10,6 +10,10 @@ Rails.application.routes.draw do
     resources :cart_items, only: [:create, :index, :update, :destroy]
   end
 
+  delete '/api/users/:id', :to => 'users#checkout'
+
+
+
   # MUST BE LAST
   get '*path', to: "static_pages#frontend_index"
 

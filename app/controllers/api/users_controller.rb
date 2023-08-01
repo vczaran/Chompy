@@ -18,6 +18,11 @@ class Api::UsersController < ApplicationController
     render 'api/users/show'
   end
 
+  def checkout
+    @user = User.find(params[:id])
+    @user.cart_items.destroy_all
+  end
+
 
 
 end

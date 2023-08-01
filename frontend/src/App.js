@@ -5,6 +5,7 @@ import NavBar from "./components/NavBar";
 import SplashPage from "./components/SplashPage";
 import ProductsIndex from "./components/ProductsIndex";
 import ProductShow from "./components/ProductShow";
+import CartIndex from "./components/Cart/CartIndex";
 
 
 function App() {
@@ -18,6 +19,10 @@ function App() {
 
           <Route path="/register" >
             <SignupForm />
+          </Route>
+
+          <Route path="/cart" >
+            <CartIndex />
           </Route>
 
           <Route path="/products/:productId" >
