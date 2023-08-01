@@ -20,12 +20,17 @@ export default function CartIndex () {
 
     if (cart && Object.keys(cart).length) {
     return (
-        <div className="cart-index">
-            {/* <h1>Subtotal: ${total} </h1> */}
-            <ul className="cart-items-list"> 
-                {Object.values(cart).map( item => <CartIndexItem item={item}/>)}
-            </ul>  
-            <button onClick={handleCheckout}>Checkout</button>
+        < div className="cart-page">
+            <div className="cart-index">
+                <h1>Shopping Cart</h1>
+                <ul className="cart-items-list"> 
+                    {Object.values(cart).map( item => <CartIndexItem item={item}/>)}
+                </ul>  
+            </div>
+            <div className="checkout-container">
+                <h1>Subtotal $50</h1>
+                <button onClick={handleCheckout}>Checkout</button>
+            </div>
         </div>
     )
     } else {

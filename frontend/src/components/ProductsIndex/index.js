@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchProducts } from "../../store/products";
 import { Link } from "react-router-dom";
 import './ProductsIndex.css';
-import { addCartItem } from "../../store/cart";
+import { addCartItem, updateCartItem } from "../../store/cart";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
 
@@ -14,6 +14,8 @@ function ProductsIndex() {
     const [quantity, setQuantity] = useState(1);
     const history = useHistory();
     const currentUser = useSelector(state => state.session.user);
+
+    const cart = useSelector(state => state.cart);
 
     useEffect(() => {
         dispatch(fetchProducts())
@@ -36,10 +38,17 @@ function ProductsIndex() {
             history.push('/login')
         } else {
             let userId = currentUser.id;
-            
-            const cartItem = { quantity, userId, productId};
-            dispatch(addCartItem(cartItem));
-        }
+            let product = cart[productId];
+            debugger
+            if (product) {
+                debugger
+                setQuantity(quantity += 1);
+                dispatch(updateCartItem(product.id, quantity));
+            } else {
+                const cartItem = { quantity, userId, productId};
+                dispatch(addCartItem(cartItem));
+             }}
+
     }
 
     const ProductList = products.map(product => {

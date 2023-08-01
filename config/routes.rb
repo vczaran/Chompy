@@ -8,11 +8,9 @@ Rails.application.routes.draw do
     resource :session, only: [:show, :create, :destroy]
     resources :products, only: [:index, :show]
     resources :cart_items, only: [:create, :index, :update, :destroy]
+    resources :reviews, only: [:create, :update, :destroy]
     delete '/users/:id', :to => 'users#checkout'
   end
-
- 
-
 
 
   # MUST BE LAST

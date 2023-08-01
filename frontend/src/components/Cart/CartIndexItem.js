@@ -20,7 +20,7 @@ export default function CartIndexItem (item) {
 
     return (
         <ul>
-            <li>{product?.imageUrl}</li>
+            <img src={`{product.imageUrl}`}/>
             <li>{product?.name}</li>
             <li>{product?.price}</li>
             <li>Quantity: {quantity}</li>

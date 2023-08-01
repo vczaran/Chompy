@@ -17,6 +17,10 @@
     padding-left: 5px;
 }
 
+.cart a {
+    text-decoration: none;
+}
+
 .cart ul {
     display: flex;
     flex-direction: column;
@@ -38,7 +42,13 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 20px;
+    padding: 30px;
+    margin-top: 50px;
+}
+
+.empty-cart-page img {
+    width: 30%;
+    height: 30%;
 }
 
 .empty-cart-page h1 {
@@ -49,6 +59,7 @@
 
 .empty-cart-page a {
     text-decoration: none;
+    text-align: center;
     font-family: 'Poppins';
     background-color: #ef6c00;
     color: #fff;
@@ -57,9 +68,65 @@
     border-radius: 20px;
     font-size: 12px;
     padding: 10px;
+    margin-top: 10px;
+    width: 12%;
 }
 
 .empty-cart-page a:hover {
     cursor: pointer;
     background-color: #ef8126;
+}
+
+.cart-index {
+    display: flex;
+    flex-direction: column;
+    width: 75%;
+}
+
+.cart-items-list ul {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border: 1px solid lightgray;
+}
+
+.cart-page {
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+    margin: auto;
+}
+
+.checkout-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    border: 1px solid #eee;
+    border-radius: 10px;
+    width: 25%;
+    padding: 16px;
+}
+
+.checkout-container button {
+    font-family: 'Poppins';
+    background-color: #ef6c00;
+    color: #fff;
+    border: 1.6px solid #ef6c00;
+    font-weight: 700;
+    width: 90%;
+    border-radius: 20px;
+    font-size: 14px;
+    padding: 10px;
+}
+
+.checkout-container button:hover {
+    cursor: pointer;
+    background-color: #ef8126;
+}
+
+.checkout-container h1, .cart-index h1 {
+    font-family: 'Poppins';
+    font-size: 18px;
+    font-weight: 700;
 }

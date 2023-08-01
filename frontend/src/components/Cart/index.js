@@ -14,7 +14,7 @@ export default function Cart () {
             <div className="cart"
                 onMouseEnter={() => setShow(true)}
                 onMouseLeave={() => setShow(false)}>
-                <i class="fa-solid fa-cart-shopping fa-xl" style={{color: "#ffffff"}}></i>
+                <i className="fa-solid fa-cart-shopping fa-xl" style={{color: "#ffffff"}}></i>
                 <Link to="/cart"><h1>cart</h1></Link>
 
                 {show && 
@@ -29,7 +29,7 @@ export default function Cart () {
                 <div className="cart"
                 onMouseEnter={() => setShow(true)}
                 onMouseLeave={() => setShow(false)}>
-                    <i class="fa-solid fa-cart-shopping fa-xl" style={{color: "#ffffff"}}></i>
+                    <i className="fa-solid fa-cart-shopping fa-xl" style={{color: "#ffffff"}}></i>
                     <h1>cart</h1>
 
                     {show &&
