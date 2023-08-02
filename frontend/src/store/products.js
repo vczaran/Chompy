@@ -2,7 +2,8 @@ import { csrfFetch } from "./csrf";
 
 const RECEIVE_PRODUCTS = "products/RECEIVE_PRODUCTS";
 const RECEIVE_PRODUCT = "products/RECEIVE_PRODUCT";
-const RECEIVE_REVIEWS = "products/RECEIVE_REVIEWS";
+const RECEIVE_REVIEWS = "reviews/RECEIVE_REVIEWS";
+const ADD_REVIEW = "reviews/ADD_REVIEW";
 
 export const receiveProducts = (products) => {
     return {
@@ -26,6 +27,14 @@ export const receiveReviews = (reviews) => {
     }
 }
 
+export const addReview = (review) => {
+    return {
+        type: ADD_REVIEW,
+        review
+    }
+}
+
+
 export const fetchProducts = () => async (dispatch) => {
     const res = await csrfFetch('/api/products');
     const data = await res.json();
@@ -44,6 +53,15 @@ export const fetchReviews = (productId) => async dispatch => {
     dispatch(receiveReviews(data.product[productId].reviews));
 }
 
+export const submitReview = (review) => async dispatch => {
+    const res = await csrfFetch('/api/reviews', {
+        method: 'POST',
+        body: JSON.stringify(review)
+    })
+
+    const data = await res.json();
+    dispatch(addReview(data.review));
+}
 
 function productsReducer (state = {}, action) {
     const newState = {...state};
@@ -55,6 +73,8 @@ function productsReducer (state = {}, action) {
             return {...newState, ...action.product};
         case RECEIVE_REVIEWS:
             return {...newState, ...action.reviews};
+        case ADD_REVIEW:
+            return {...newState, ...action.review};
         default:
             return state;
     }

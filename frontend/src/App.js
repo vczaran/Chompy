@@ -6,6 +6,7 @@ import SplashPage from "./components/SplashPage";
 import ProductsIndex from "./components/ProductsIndex";
 import ProductShow from "./components/ProductShow";
 import CartIndex from "./components/Cart/CartIndex";
+import ReviewForm from "./components/ReviewForm";
 
 
 function App() {
@@ -25,7 +26,11 @@ function App() {
             <CartIndex />
           </Route>
 
-          <Route path="/products/:productId" >
+          <Route exact path="/review/:productId" >
+            <ReviewForm />
+          </Route>
+
+          <Route exact path="/products/:productId" >
             <ProductShow />
           </Route>
 

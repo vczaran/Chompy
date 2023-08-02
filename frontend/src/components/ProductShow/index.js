@@ -4,6 +4,7 @@ import { useParams, useHistory } from "react-router-dom";
 import { fetchProduct, fetchReviews } from "../../store/products";
 import './ProductShow.css';
 import { addCartItem } from "../../store/cart";
+import { Link } from "react-router-dom";
 
 
 function ProductShow () {
@@ -59,6 +60,23 @@ function ProductShow () {
         )
     })
 
+    const ReviewList = product.reviews?.map(review => {
+    // if (product.reviews) {
+        return (
+            <li key={review.id}>
+                <p>{review.name}</p>
+                <p>{review.createdAt}</p>
+                <p>{review.title}</p>
+                <p>{review.body}</p>
+            </li>
+        );
+    // } else {
+    //     return (
+    //         <h1>No reviews yet. Be the first!</h1>
+    //     )
+    // }
+
+    });
 
     return (
         <>
@@ -106,6 +124,13 @@ function ProductShow () {
         <div className="product-show-details">
                 <h2>About This Item</h2>
                 <p>{product.details}</p>
+        </div>
+        <div className="reviews">
+            <h1>Reviews</h1>
+            <Link to={`/review/${productId}`}>Write a Review</Link>
+            <ul>
+                {product.reviews && ReviewList}
+            </ul>
         </div>
         </>
     )

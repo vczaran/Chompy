@@ -4,7 +4,7 @@ import { fetchProducts } from "../../store/products";
 import { Link } from "react-router-dom";
 import './ProductsIndex.css';
 import { addCartItem, updateCartItem } from "../../store/cart";
-import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import { useHistory } from "react-router-dom";
 
 
 function ProductsIndex() {
@@ -39,9 +39,8 @@ function ProductsIndex() {
         } else {
             let userId = currentUser.id;
             let product = cart[productId];
-            debugger
+
             if (product) {
-                debugger
                 setQuantity(quantity += 1);
                 dispatch(updateCartItem(product.id, quantity));
             } else {
