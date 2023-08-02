@@ -32,7 +32,7 @@ function ProductShow () {
         } else {
             let userId = currentUser.id;
             
-            const cartItem = { quantity, userId, productId};
+            let cartItem = { quantity, userId, productId};
             dispatch(addCartItem(cartItem));
         }
     }
