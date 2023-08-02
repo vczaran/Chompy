@@ -3,7 +3,7 @@ class Api::ReviewsController < ApplicationController
 
     def create
         @review = Review.new(review_params)
-        # @review.author_id = current_user.id
+        @review.author_id = current_user.id
 
         if @review.save
             render 'api/reviews/show'

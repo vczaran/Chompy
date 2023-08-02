@@ -2,6 +2,7 @@ import { csrfFetch } from "./csrf";
 
 const RECEIVE_PRODUCTS = "products/RECEIVE_PRODUCTS";
 const RECEIVE_PRODUCT = "products/RECEIVE_PRODUCT";
+const RECEIVE_REVIEWS = "products/RECEIVE_REVIEWS";
 
 export const receiveProducts = (products) => {
     return {
@@ -18,6 +19,13 @@ export const receiveProduct = (product) => {
     }
 }
 
+export const receiveReviews = (reviews) => {
+    return {
+        type: RECEIVE_REVIEWS,
+        reviews
+    }
+}
+
 export const fetchProducts = () => async (dispatch) => {
     const res = await csrfFetch('/api/products');
     const data = await res.json();
@@ -30,6 +38,12 @@ export const fetchProduct = (productId) => async (dispatch) => {
     dispatch(receiveProduct(data.product));
 }
 
+export const fetchReviews = (productId) => async dispatch => {
+    const res = await csrfFetch(`/api/products/${productId}`);
+    const data = await res.json();
+    dispatch(receiveReviews(data.product[productId].reviews));
+}
+
 
 function productsReducer (state = {}, action) {
     const newState = {...state};
@@ -39,6 +53,8 @@ function productsReducer (state = {}, action) {
             return {...newState, ...action.products};
         case RECEIVE_PRODUCT:
             return {...newState, ...action.product};
+        case RECEIVE_REVIEWS:
+            return {...newState, ...action.reviews};
         default:
             return state;
     }

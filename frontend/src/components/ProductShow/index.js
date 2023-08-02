@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux"
 import { useParams, useHistory } from "react-router-dom";
-import { fetchProduct } from "../../store/products";
+import { fetchProduct, fetchReviews } from "../../store/products";
 import './ProductShow.css';
 import { addCartItem } from "../../store/cart";
 
@@ -16,7 +16,8 @@ function ProductShow () {
     const currentUser = useSelector(state => state.session.user);
 
     useEffect(() => {
-        dispatch(fetchProduct(productId))
+        dispatch(fetchProduct(productId));
+        dispatch(fetchReviews(productId));
     }, [productId])
 
     if (!product) {

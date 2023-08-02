@@ -25,7 +25,7 @@ class Product < ApplicationRecord
 
     has_many :reviews,
     foreign_key: :product_id,
-    class_name: :review,
+    class_name: :Review,
     dependent: :destroy
 
     has_one_attached :image
