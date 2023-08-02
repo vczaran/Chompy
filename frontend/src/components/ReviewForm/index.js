@@ -26,22 +26,27 @@ export default function ReviewForm () {
 
     return (
         <div className="review-page">
-            <h1>Write a Review</h1>
-            {/* product image and title should go here as well */}
-            <form onSubmit={handleReviewSubmit}>
-                <input type="text" placeholder="Your Nickname" onChange={(e) => {setName(e.target.value)}}/>
-                <input type="text" placeholder="Review Headline" onChange={(e) => {setTitle(e.target.value)}}/>
-                <input type="textarea" placeholder="Your Review" onChange={(e) => {setBody(e.target.value)}}/>
-                <label>Would you recommend this product to a friend?
-                    <label>Yes
-                        <input type="radio" name="rec"/>
-                    </label>
-                    <label>No
-                        <input type="radio" name="rec"/>
-                    </label>
-                </label>
-                <input type="submit" value="Submit Review"/>
-            </form>
+            <div className="review-headers">
+                <h1>Write a Review</h1>
+                {/* product image and title should go here as well */}
+            </div>
+            <div>
+                <form className="review-form" onSubmit={handleReviewSubmit}>
+                    <input type="text" placeholder="Your Nickname" onChange={(e) => {setName(e.target.value)}}/>
+                    <input type="text" placeholder="Review Headline" onChange={(e) => {setTitle(e.target.value)}}/>
+                    <input id="review-body-create" type="textarea" placeholder="Your Review" onChange={(e) => {setBody(e.target.value)}}/>
+                    <div className="review-radios">
+                        <h1>Would you recommend this product to a friend?</h1>
+                            <label>Yes
+                                <input type="radio" name="rec"/>
+                            </label>
+                            <label>No
+                                <input type="radio" name="rec"/>
+                            </label>
+                    </div>
+                    <input id="review-submit" type="submit" value="Submit Review"/>
+                </form>
+            </div>
         </div>
     )
 }

@@ -17,22 +17,24 @@ export default function EditReviewForm () {
 
     function handleEditReview (e) {
         e.preventDefault();
-        // let userId = review.userId;
-        // let productId = review.productId;
         let review = {name, title, body};
         dispatch(editReview(reviewId, review)).then(() => {history.push(`/`)});
     }
 
     return (
         <div className="review-page">
-            <h1>Edit Review</h1>
-            {/* product image and title should go here as well */}
-            <form onSubmit={handleEditReview}>
-                <input type="text" value={name} onChange={(e) => {setName(e.target.value)}}/>
-                <input type="text" value={title} onChange={(e) => {setTitle(e.target.value)}}/>
-                <input type="textarea" value={body} onChange={(e) => {setBody(e.target.value)}}/>
-                <input type="submit" value="Edit Review"/>
-            </form>
+            <div className="review-headers">
+                <h1>Edit Review</h1>
+                {/* product image and title should go here as well */}
+            </div>
+            <div>
+                <form className="review-form" onSubmit={handleEditReview}>
+                    <input type="text" value={name} onChange={(e) => {setName(e.target.value)}}/>
+                    <input type="text" value={title} onChange={(e) => {setTitle(e.target.value)}}/>
+                    <input id="review-body-create" type="textarea" value={body} onChange={(e) => {setBody(e.target.value)}}/>
+                    <input id="review-submit" type="submit" value="Edit Review"/>
+                </form>
+            </div>
         </div>
         )
 }

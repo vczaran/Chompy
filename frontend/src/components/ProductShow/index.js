@@ -42,9 +42,6 @@ function ProductShow () {
         dispatch(deleteReview(reviewId));
     }
 
-    function handleEdit () {
-
-    }
 
     let selected = {flavor: null, size: null};
     
@@ -72,25 +69,22 @@ function ProductShow () {
     const ReviewList = Object.values(reviews).map(review => {
         if (review?.productId == productId && review?.authorId == currentUser?.id) {
              return (
-                <>
-                    <li key={review.id}>
-                        <p>{review.name}</p>
-                        <p>{review.createdAt}</p>
-                        <p>{review.title}</p>
-                        <p>{review.body}</p>
+                    <li id="review" key={review.id}>
+                        <p>By {review.name} on {review.createdAt}</p>
+                        <h3>{review.title}</h3>
+                        <p id="review-body">{review.body}</p>
+                        <div className="review-buttons">
+                            <button onClick={(() => {handleDelete(review.id)})}>Delete Review</button>
+                            <Link to={`/reviews/edit/${review.id}`}>Edit Review</Link>
+                        </div>
                     </li>
-                    <button onClick={(() => {handleDelete(review.id)})}>Delete</button>
-                    {/* <button onClick={handleEdit}>Edit</button> */}
-                    <Link to={`/reviews/edit/${review.id}`}>Edit</Link>
-                </>  
             );
         } else if (review?.productId == productId) {
               return (
-                    <li key={review.id}>
-                        <p>{review.name}</p>
-                        <p>{review.createdAt}</p>
-                        <p>{review.title}</p>
-                        <p>{review.body}</p>
+                    <li id="review" key={review.id}>
+                        <p>By {review.name} on {review.createdAt}</p>
+                        <h3>{review.title}</h3>
+                        <p id="review-body">{review.body}</p>
                     </li> 
             );
         }
@@ -145,8 +139,8 @@ function ProductShow () {
         </div>
         <div className="reviews">
             <h1>Reviews</h1>
-            <Link to={`/review/${productId}`}>Write a Review</Link>
-            <ul>
+            <Link id="review-link" to={`/review/${productId}`}>Write a Review</Link>
+            <ul className="review-list">
                 {product.reviews && ReviewList}
             </ul>
         </div>
