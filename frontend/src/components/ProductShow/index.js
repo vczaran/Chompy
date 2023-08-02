@@ -11,6 +11,7 @@ function ProductShow () {
     const dispatch = useDispatch();
     const productId = useParams().productId;
     const product = useSelector(state => state.products?.[productId]);
+    const reviews = useSelector(state => state.reviews);
 
     const [quantity, setQuantity] = useState(1);
     const history = useHistory();
@@ -18,7 +19,6 @@ function ProductShow () {
 
     useEffect(() => {
         dispatch(fetchProduct(productId));
-        dispatch(fetchReviews(productId));
     }, [productId])
 
     if (!product) {
@@ -60,22 +60,17 @@ function ProductShow () {
         )
     })
 
-    const ReviewList = product.reviews?.map(review => {
-    // if (product.reviews) {
-        return (
-            <li key={review.id}>
-                <p>{review.name}</p>
-                <p>{review.createdAt}</p>
-                <p>{review.title}</p>
-                <p>{review.body}</p>
-            </li>
-        );
-    // } else {
-    //     return (
-    //         <h1>No reviews yet. Be the first!</h1>
-    //     )
-    // }
-
+    const ReviewList = Object.values(reviews).map(review => {
+        if (review.productId == productId) {
+            return (
+                <li key={review.id}>
+                    <p>{review.name}</p>
+                    <p>{review.createdAt}</p>
+                    <p>{review.title}</p>
+                    <p>{review.body}</p>
+                </li>
+            );
+        }
     });
 
     return (

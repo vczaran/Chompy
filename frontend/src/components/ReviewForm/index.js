@@ -1,8 +1,9 @@
 import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
-import { submitReview } from "../../store/products";
+import { submitReview } from "../../store/reviews";
 import { useParams } from "react-router-dom";
+import './ReviewForm.css';
 
 export default function ReviewForm () {
     const dispatch = useDispatch();
@@ -13,12 +14,13 @@ export default function ReviewForm () {
     const [title, setTitle] = useState("");
     const [body, setBody] = useState("");
 
-    function handleReviewSubmit () {
+    function handleReviewSubmit (e) {
+        e.preventDefault();
         if (!currentUser) {
             history.push('/login')
         } else {
            let review = {name, title, body, productId};
-           dispatch(submitReview(review)).then(() => history.push(`/products/:productId`));
+           dispatch(submitReview(review)).then(() => {history.push(`/products/${productId}`)});
         }
     }
 
