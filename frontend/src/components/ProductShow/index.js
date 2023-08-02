@@ -37,6 +37,14 @@ function ProductShow () {
     }
 
 
+    function handleDelete () {
+
+    }
+
+    function handleEdit () {
+
+    }
+
     let selected = {flavor: null, size: null};
     
     const FlavorOptions = product.flavorOptions.map(flavor => {
@@ -61,14 +69,27 @@ function ProductShow () {
     })
 
     const ReviewList = Object.values(reviews).map(review => {
-        if (review.productId == productId) {
-            return (
-                <li key={review.id}>
-                    <p>{review.name}</p>
-                    <p>{review.createdAt}</p>
-                    <p>{review.title}</p>
-                    <p>{review.body}</p>
-                </li>
+        if (review?.productId == productId && review?.authorId == currentUser?.id) {
+             return (
+                <>
+                    <li key={review.id}>
+                        <p>{review.name}</p>
+                        <p>{review.createdAt}</p>
+                        <p>{review.title}</p>
+                        <p>{review.body}</p>
+                    </li>
+                    <button onClick={handleDelete}>Delete</button>
+                    <button onClick={handleEdit}>Edit</button>
+                </>  
+            );
+        } else if (review?.productId == productId) {
+              return (
+                    <li key={review.id}>
+                        <p>{review.name}</p>
+                        <p>{review.createdAt}</p>
+                        <p>{review.title}</p>
+                        <p>{review.body}</p>
+                    </li> 
             );
         }
     });
