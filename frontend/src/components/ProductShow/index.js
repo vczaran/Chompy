@@ -5,6 +5,7 @@ import { fetchProduct, fetchReviews } from "../../store/products";
 import './ProductShow.css';
 import { addCartItem } from "../../store/cart";
 import { Link } from "react-router-dom";
+import { deleteReview } from "../../store/reviews";
 
 
 function ProductShow () {
@@ -37,8 +38,8 @@ function ProductShow () {
     }
 
 
-    function handleDelete () {
-
+    function handleDelete (reviewId) {
+        dispatch(deleteReview(reviewId));
     }
 
     function handleEdit () {
@@ -78,8 +79,9 @@ function ProductShow () {
                         <p>{review.title}</p>
                         <p>{review.body}</p>
                     </li>
-                    <button onClick={handleDelete}>Delete</button>
-                    <button onClick={handleEdit}>Edit</button>
+                    <button onClick={(() => {handleDelete(review.id)})}>Delete</button>
+                    {/* <button onClick={handleEdit}>Edit</button> */}
+                    <Link to={`/reviews/edit/${review.id}`}>Edit</Link>
                 </>  
             );
         } else if (review?.productId == productId) {

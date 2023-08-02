@@ -7,6 +7,7 @@ import ProductsIndex from "./components/ProductsIndex";
 import ProductShow from "./components/ProductShow";
 import CartIndex from "./components/Cart/CartIndex";
 import ReviewForm from "./components/ReviewForm";
+import EditReviewForm from "./components/ReviewForm/EditReviewForm";
 
 
 function App() {
@@ -28,6 +29,10 @@ function App() {
 
           <Route exact path="/review/:productId" >
             <ReviewForm />
+          </Route>
+
+          <Route exact path="/reviews/edit/:reviewId" >
+            <EditReviewForm />
           </Route>
 
           <Route exact path="/products/:productId" >

@@ -15,7 +15,7 @@ class Api::ReviewsController < ApplicationController
         @review = Review.find(params[:id])
 
         if current_user.id == @review.author_id
-            # update
+            @review.update!(review_params)
         end
 
     end
@@ -24,7 +24,7 @@ class Api::ReviewsController < ApplicationController
         @review = Review.find(params[:id])
 
         if current_user.id == @review.author_id
-            # delete
+            @review.delete
         end
         
     end
