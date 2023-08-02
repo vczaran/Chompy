@@ -11,6 +11,7 @@ export default function EditReviewForm () {
     const history = useHistory();
     const reviewId = useParams().reviewId;
     const review = reviews[reviewId];
+    const productId = review.productId;
     const [name, setName] = useState(review?.name);
     const [title, setTitle] = useState(review?.title);
     const [body, setBody] = useState(review?.body);
@@ -18,7 +19,7 @@ export default function EditReviewForm () {
     function handleEditReview (e) {
         e.preventDefault();
         let review = {name, title, body};
-        dispatch(editReview(reviewId, review)).then(() => {history.push(`/`)});
+        dispatch(editReview(reviewId, review)).then(() => {history.push(`/products/${productId}`)});
     }
 
     return (
