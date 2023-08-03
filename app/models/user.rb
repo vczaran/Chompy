@@ -21,13 +21,19 @@ class User < ApplicationRecord
     validates :session_token, presence: true, uniqueness: true
     validates :password, length: { minimum: 8, allow_nil: true }
 
-    has_many :cart_items
+    has_many :cart_items,
+    dependent: :destroy
 
+    has_many :reviews,
+    foreign_key: :author_id,
+    class_name: :Review,
+    dependent: :destroy
 
     def self.find_by_credentials(email, password)
         user = User.find_by(email: email)
         user&.authenticate(password) ? user : nil
     end
+
 
     def reset_session_token
         self.session_token = generate_session_token

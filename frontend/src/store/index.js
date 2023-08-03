@@ -2,10 +2,18 @@ import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 import sessionReducer from './sessionReducer';
 import errorsReducer from './errors';
+import productsReducer from './products';
+import cartReducer from './cart';
+import reviewsReducer from './reviews';
+import searchReducer from './search';
 
 const rootReducer = combineReducers({
   session: sessionReducer,
-  errors: errorsReducer
+  errors: errorsReducer,
+  products: productsReducer,
+  cart: cartReducer,
+  reviews: reviewsReducer,
+  search: searchReducer
 });
 
 let enhancer;

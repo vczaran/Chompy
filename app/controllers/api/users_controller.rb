@@ -18,10 +18,11 @@ class Api::UsersController < ApplicationController
     render 'api/users/show'
   end
 
-  private
-
-  def user_params
-    params.require(:user).permit(:name, :email, :password)
+  def checkout
+    @user = User.find(params[:id])
+    @user.cart_items.destroy_all
   end
+
+
 
 end

@@ -1,21 +1,5 @@
-.SplashPage {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: flex-start;
-}
-
-.product img {
-    width: 250px;
-    height: 380px;
-}
 
 .SplashPage h1 {
     font-family: 'Poppins';
     font-size: 20px;
-}
-
-.product {
-    font-family: 'Poppins';
-    font-size: 14px;
 }
