@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import CartIndexItem from "./CartIndexItem";
-import { useState, useEffect } from "react";
 import './Cart.css';
 import { checkout, resetCart } from "../../store/cart";
 
@@ -11,26 +10,15 @@ export default function CartIndex () {
     const products = useSelector(state => state.products);
     const dispatch = useDispatch();
 
-    const [cartQty, setCartQty] = useState(0);
-    const [total, setTotal] = useState(0);
+    let quant = 0;
+    let price = 0;
+    if (currentUser && cart.length) {
+        cart.forEach((item) => {
+            quant += parseFloat(item.quantity);
+            price += (parseFloat(products[item.productId].price * item.quantity));
+        })
+    }
 
-
-    useEffect(() => {
-        let quant = 0;
-        let price = 0;
-
-        if (currentUser && cart.length) {
-            cart.forEach((item) => {
-                quant += item.quantity;
-                price += products[item.productId].price * item.quantity;
-                setCartQty(quant);
-                setTotal(price.toFixed(2));
-            })
-            } else {
-                setCartQty(0);
-                setTotal(0);
-            }
-        }, [cart])
 
     function handleCheckout () {
         dispatch(resetCart());
@@ -49,8 +37,8 @@ export default function CartIndex () {
             <div className="checkout-container">
                 <div className="checkout-headers">
                     <h1>Subtotal</h1>
-                    <h1>${total}</h1>
-                    <h3>{cartQty} items</h3>
+                    <h1>${price}</h1>
+                    <h3>{quant} items</h3>
                 </div>
                 <button onClick={handleCheckout}>Checkout</button>
             </div>

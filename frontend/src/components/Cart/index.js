@@ -3,47 +3,39 @@ import CartItem from "./CartItem";
 import './Cart.css';
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { useEffect } from "react";
 
 export default function Cart () {
     let currentUser = useSelector(state => state.session.user);
     const cart = useSelector(state => Object.values(state.cart));
     const products = useSelector(state => state.products);
     const [show, setShow] = useState(false);
-    const [cartQty, setCartQty] = useState(0);
-    const [total, setTotal] = useState(0);
 
 
-    useEffect(() => {
-        let quant = 0;
-        let price = 0;
-
-        if (currentUser && cart.length) {
-            cart.forEach((item) => {
-                quant += item.quantity;
-                price += products[item.productId].price * item.quantity;
-                setCartQty(quant);
-                setTotal(price.toFixed(2));
-            })
-            } else {
-                setCartQty(0);
-                setTotal(0);
-            }
-        }, [cart])
+    let quant = 0;
+    let price = 0;
+    if (currentUser && cart.length) {
+        cart.forEach((item) => {
+            quant += parseFloat(item.quantity);
+            price += parseFloat((products[item.productId].price * item.quantity));
+        })
+    }
+      
 
     if (currentUser && cart.length) {
         return (
             <div className="cart"
                 onMouseEnter={() => setShow(true)}
                 onMouseLeave={() => setShow(false)}>
-                <i className="fa-solid fa-cart-shopping fa-xl" style={{color: "#ffffff"}}></i>
-                <span className="cart-badge">{cartQty}</span>
+                <div className="icon-and-badge">
+                    <i className="fa-solid fa-cart-shopping fa-xl" style={{color: "#ffffff"}}></i>
+                    <span className="cart-badge">{quant}</span>
+                </div>
                 <Link to="/cart"><h1>cart</h1></Link>
 
                 {show && 
                     <ul>
                         <div className="cart-drop-headers">
-                            <h2>Cart Subtotal: ${total}</h2>
+                            <h2>Cart Subtotal: ${price}</h2>
                             <Link to="/cart">Proceed to Checkout</Link>
                        </div>
                       {cart.map( item => <CartItem item={item}/>)}
@@ -57,7 +49,7 @@ export default function Cart () {
                 onMouseEnter={() => setShow(true)}
                 onMouseLeave={() => setShow(false)}>
                     <i className="fa-solid fa-cart-shopping fa-xl" style={{color: "#ffffff"}}></i>
-                    <span className="cart-badge">{cartQty}</span>
+                    <span className="cart-badge">{quant}</span>
                     <Link to="/cart"><h1>cart</h1></Link>
 
                     {show &&
