@@ -8,6 +8,7 @@ import ProductShow from "./components/ProductShow";
 import CartIndex from "./components/Cart/CartIndex";
 import ReviewForm from "./components/ReviewForm";
 import EditReviewForm from "./components/ReviewForm/EditReviewForm";
+import SearchPage from "./components/SearchPage";
 
 
 function App() {
@@ -26,6 +27,10 @@ function App() {
           <Route path="/cart" >
             <CartIndex />
           </Route>
+
+          {/* <Route path="/search" >
+            <SearchPage />
+          </Route> */}
 
           <Route exact path="/review/:productId" >
             <ReviewForm />
@@ -46,6 +51,7 @@ function App() {
            <Route path="/" >
             <SplashPage />
           </Route>
+
         </Switch>
   </>
   

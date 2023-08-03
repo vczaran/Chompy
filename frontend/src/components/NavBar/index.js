@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import LogOut from "../LogOut";
 import { useSelector } from "react-redux";
 import Cart from "../Cart";
+import SearchBar from "./SearchBar";
 
 function DropDown () {
     const [show, setShow] = useState(false);
@@ -48,7 +49,8 @@ function NavBar () {
     return (
         <header className="nav-bar">
             <Link to="/"><img className="logo" src="/images/chompy-logo.png" alt="Logo"></img></Link>
-            <input className="searchbar" type="text" placeholder="Search"/>
+            {/* <input className="searchbar" type="text" placeholder="Search"/> */}
+            <SearchBar />
             <DropDown />
         </header>
     )

@@ -46,10 +46,13 @@ export const resetCart = () => {
 };
 
 export const fetchCartItems = (userId) => async dispatch => {
-    const res = await csrfFetch(`/api/users/${userId}`)
-    const data = await res.json();
 
-    dispatch(receiveCart(data?.cart));
+    if (userId) {
+        const res = await csrfFetch(`/api/users/${userId}`);
+        const data = await res.json();
+
+        dispatch(receiveCart(data.cart));
+    }
 }
 
 export const updateCartItem = (cartItemId, quantity) => async dispatch => {
