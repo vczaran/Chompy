@@ -1,32 +1,57 @@
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import CartIndexItem from "./CartIndexItem";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import './Cart.css';
 import { checkout, resetCart } from "../../store/cart";
 
 export default function CartIndex () {
     let currentUser = useSelector(state => state.session.user);
-    const cart = useSelector(state => state.cart);
+    const cart = useSelector(state => Object.values(state.cart));
     const products = useSelector(state => state.products);
     const dispatch = useDispatch();
+
+    const [cartQty, setCartQty] = useState(0);
+    const [total, setTotal] = useState(0);
+
+
+    useEffect(() => {
+        let quant = 0;
+        let price = 0;
+
+        if (currentUser && cart.length) {
+            cart.forEach((item) => {
+                quant += item.quantity;
+                price += products[item.productId].price * item.quantity;
+                setCartQty(quant);
+                setTotal(price.toFixed(2));
+            })
+            } else {
+                setCartQty(0);
+                setTotal(0);
+            }
+        }, [cart])
 
     function handleCheckout () {
         dispatch(resetCart());
         dispatch(checkout(currentUser.id));
     }
 
-    if (cart && Object.keys(cart).length) {
+    if (cart && cart.length) {
     return (
         < div className="cart-page">
             <div className="cart-index">
                 <h1>Shopping Cart</h1>
                 <ul className="cart-items-list"> 
-                    {Object.values(cart).map( item => <CartIndexItem item={item}/>)}
+                    {cart.map( item => <CartIndexItem item={item}/>)}
                 </ul>  
             </div>
             <div className="checkout-container">
-                <h1>Subtotal $50</h1>
+                <div className="checkout-headers">
+                    <h1>Subtotal</h1>
+                    <h1>${total}</h1>
+                    <h3>{cartQty} items</h3>
+                </div>
                 <button onClick={handleCheckout}>Checkout</button>
             </div>
         </div>

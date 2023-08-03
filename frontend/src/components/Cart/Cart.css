@@ -1,8 +1,6 @@
 .cart {
     display: flex;
     position: relative;
-    /* width: fit-content;
-    height: fit-content; */
 }
 
 .cart i {
@@ -28,8 +26,8 @@
     align-items: center;
     position: absolute;
     right: 0px;
-    top: 30px;
-    width: max-content;
+    top: 25px;
+    width: 300px;
     height: max-content;
     background-color: white;
     text-align: center;
@@ -37,9 +35,6 @@
     border-radius: 3px;
 }
 
-.cart ul {
-    position: absolute;
-}
 
 .empty-cart-page {
     display: flex;
@@ -89,9 +84,10 @@
 
 .cart-items-list ul {
     display: flex;
-    align-items: center;
+    justify-content: space-between;
     padding: 10px;
-    border: 1px solid lightgray;
+    border: 1px solid #eee;
+    margin: auto;
 }
 
 .cart-page {
@@ -104,12 +100,16 @@
 .checkout-container {
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
+    justify-content: space-between;
     align-items: center;
     border: 1px solid #eee;
     border-radius: 10px;
     width: 25%;
+    height: 150px;
     padding: 16px;
+    margin: 10px;
+    top: 100px;
+    position: sticky;
 }
 
 .checkout-container button {
@@ -133,4 +133,85 @@
     font-family: 'Poppins';
     font-size: 18px;
     font-weight: 700;
+}
+
+.checkout-headers {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: left;
+    z-index: -1;
+}
+
+#cart-index-item img {
+    width: 10%;
+    height: 15%;
+    object-fit: contain;
+    padding: 10px;
+}
+
+#cart-index-buttons {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly
+}
+
+.quantity-dropdown-cartindex {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    border: 1px solid gray;
+    border-radius: 7px;
+}
+
+#cart-info {
+    font-family: 'Poppins';
+    font-size: 14px;
+    padding: 10px;
+}
+
+#cart-info li {
+    padding: 10px;
+}
+
+#cart-index-price {
+    font-family: 'Poppins';
+    font-size: 16px;
+    font-weight: 700;
+    color: #BC2848;
+}
+
+.cart-drop-headers {
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(245, 245, 245);
+    width: 100%;
+    position: relative;
+}
+
+.cart-drop-headers h2 {
+    font-family: 'Poppins';
+    font-size: 14px;
+    font-weight: 700;
+    text-align: left;
+}
+
+.cart-drop-headers a {
+    font-family: 'Poppins';
+    background-color: #ef6c00;
+    color: #fff;
+    border: 1.6px solid #ef6c00;
+    font-weight: 700;
+    width: 80%;
+    font-size: 14px;
+    padding: 10px;
+    margin: 10px;
+}
+
+.cart-drop-item img {
+    height: 10%;
+    width: 10%;
+    object-fit: contain;
+}
+
+.cart-drop-item {
+    border: 1px solid #eee;
 }

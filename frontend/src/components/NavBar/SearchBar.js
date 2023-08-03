@@ -44,7 +44,7 @@ export default function SearchBar () {
     return (
         <div className="searchbar-container">
             <input type="text" id="search-input" value={searchText} placeholder="Search" onChange={handleSearch}/>
-            <button id="search-button" onClick={handleSubmit}>Search</button>
+            <button id="search-button" onClick={handleSubmit}><i class="fa-solid fa-magnifying-glass fa-xl" style={{color: "#244cbb"}}></i></button>
             {searchText && searchResults && <ul id="search-dropdown">
                 {searchResults.map(result => {
                    return <li className="search-dropdown-item" onClick={handleClick(result.id)}> {result.name} </li>

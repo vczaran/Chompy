@@ -1,4 +1,5 @@
 import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 
 
 export default function CartItem (item) {
@@ -6,11 +7,11 @@ export default function CartItem (item) {
     const product = products[item.item.productId];
    
     return (
-        <li>
-            {/* <li>{product?.imageUrl}</li> */}
-            <p>{product?.name}</p>
-            <p>{product?.price}</p>
-            <p>{product?.quantity}</p>
+        <li className="cart-drop-item">
+            <img src={`${product?.imageUrl}`}/>
+            <Link to={`/products/${product.id}`}><p>{product?.name}</p></Link>
+            <p>${product?.price}</p>
+            <p>(Qty: {item.item.quantity})</p>
         </li>
     )
 

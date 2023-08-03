@@ -40,16 +40,10 @@ function ProductsIndex() {
             let userId = currentUser.id;
             let product = cart[productId];
 
-            // if (product) {
-            //     setQuantity(quantity += 1);
-            //     dispatch(updateCartItem(product.id, quantity));
-            // } else {
-                let cartItem = { quantity, userId, productId};
-                dispatch(addCartItem(cartItem));
-             }
-            }
-
-    // }
+            let cartItem = { quantity, userId, productId};
+            dispatch(addCartItem(cartItem));
+        }
+        }
 
     const ProductList = products.map(product => {
     

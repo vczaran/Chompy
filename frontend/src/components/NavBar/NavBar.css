@@ -139,3 +139,30 @@
 .search-dropdown-item:hover {
     background-color: rgb(238, 238, 238);
 }
+
+#cart-index-buttons button {
+    font-family: 'Poppins';
+    font-size: 14px;
+    font-weight: 700;
+    color: #1C49C2;
+    background-color: white;
+    outline: none;
+    border: 2px solid #dbebf9;
+    border-radius: 20px;
+    padding: 5px 10px 5px 10px;
+}
+
+#cart-index-buttons button:hover {
+    cursor: pointer;
+    background-color: #dbebf9;;
+}
+
+#search-button {
+    background-color: white;
+    outline: none;
+    border: none;
+}
+
+#search-button:hover {
+    cursor: pointer;
+}

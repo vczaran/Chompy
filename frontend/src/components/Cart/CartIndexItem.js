@@ -19,26 +19,30 @@ export default function CartIndexItem (item) {
     }
 
     return (
-        <ul>
-            <img src={`{product.imageUrl}`}/>
-            <li>{product?.name}</li>
-            <li>{product?.price}</li>
-            <li>Quantity: {quantity}</li>
-            <select className="quantity-dropdown-cartindex" onChange={handleChange} defaultValue={quantity}>
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                            <option value="5">5</option>
-                            <option value="6">6</option>
-                            <option value="7">7</option>
-                            <option value="8">8</option>
-                            <option value="9">9</option>
-                            <option value="10">10</option>
-                            <option value="11">11</option>
-                            <option value="12">12</option>
-            </select>
-            <button onClick={() => handleRemove(item.item.id)}>Remove</button>
+        <ul id="cart-index-item">
+            <img src={`${product.imageUrl}`}/>
+            <div id="cart-info">
+                <li>{product?.name}</li>
+                <li id="cart-index-price">${product?.price}</li>
+                <li>Quantity: {quantity}</li>
+            </div>
+            <div id="cart-index-buttons">
+                <select className="quantity-dropdown-cartindex" onChange={handleChange} defaultValue={quantity}>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                                <option value="7">7</option>
+                                <option value="8">8</option>
+                                <option value="9">9</option>
+                                <option value="10">10</option>
+                                <option value="11">11</option>
+                                <option value="12">12</option>
+                </select>
+                <button onClick={() => handleRemove(item.item.id)}>Remove</button>
+            </div>
         </ul>
     )
 
