@@ -37,9 +37,9 @@ export const loginUser = ({ email, password }) => async dispatch => {
     });
     const data = await res.json();
     if (res.ok) {
-      storeCurrentUser(data.user, data.cart);
-      dispatch(setCurrentUser(data.user, data.cart));
-      dispatch(fetchCartItems(data.user.id));
+      storeCurrentUser(data?.user, data?.cart);
+      dispatch(setCurrentUser(data?.user, data?.cart));
+      dispatch(fetchCartItems(data.user?.id));
       return res;
     } else {
       dispatch(storeErrors(data.errors));
@@ -63,12 +63,12 @@ export const loginUser = ({ email, password }) => async dispatch => {
     storeCSRFToken(res);
     const data = await res.json();
     if (res.ok) {
-      storeCurrentUser(data.user, data.cart);
-      dispatch(setCurrentUser(data.user, data.cart));
-      dispatch(fetchCartItems(data.user.id));
+      storeCurrentUser(data?.user, data?.cart);
+      dispatch(setCurrentUser(data?.user, data?.cart));
+      dispatch(fetchCartItems(data.user?.id));
       return res;
     } else {
-      dispatch(storeErrors(data.errors));
+      dispatch(storeErrors(data?.errors));
     }
   };
 

@@ -12,11 +12,11 @@ import { fetchCartItems } from './store/cart';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 const store = configureStore();
 
-if (process.env.NODE_ENV !== "production") {
-  window.store = store;
-  window.csrfFetch = csrfFetch;
-  window.fetchCartItems = fetchCartItems;
-}
+// if (process.env.NODE_ENV !== "production") {
+//   window.store = store;
+//   window.csrfFetch = csrfFetch;
+//   window.fetchCartItems = fetchCartItems;
+// }
 
 
 function initializeApp() {
