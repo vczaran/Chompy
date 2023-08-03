@@ -29,12 +29,16 @@
     position: absolute;
     right: 0px;
     top: 30px;
-    width: 15vw;
-    height: 10vw;
+    width: max-content;
+    height: max-content;
     background-color: white;
     text-align: center;
     box-shadow: 0 1px 3px 1px black;
     border-radius: 3px;
+}
+
+.cart ul {
+    position: absolute;
 }
 
 .empty-cart-page {

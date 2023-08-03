@@ -19,6 +19,10 @@
     margin: 20px;
 }
 
+.products-index li img {
+    object-fit: contain;
+}
+
 .products-index img {
 height: 50%;
 width: 75%;

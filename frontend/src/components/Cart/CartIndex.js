@@ -10,8 +10,6 @@ export default function CartIndex () {
     const cart = useSelector(state => state.cart);
     const products = useSelector(state => state.products);
     const dispatch = useDispatch();
-    // const items = products.select(id === cart.productId);
-    // const items = products.map ( item => item.id )
 
     function handleCheckout () {
         dispatch(resetCart());

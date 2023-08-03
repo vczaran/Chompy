@@ -6,12 +6,12 @@ export default function CartItem (item) {
     const product = products[item.item.productId];
    
     return (
-        <ul>
-            <li>{product?.imageUrl}</li>
-            <li>{product?.name}</li>
-            <li>{product?.price}</li>
-            <li>{product?.quantity}</li>
-        </ul>
+        <li>
+            {/* <li>{product?.imageUrl}</li> */}
+            <p>{product?.name}</p>
+            <p>{product?.price}</p>
+            <p>{product?.quantity}</p>
+        </li>
     )
 
 }
