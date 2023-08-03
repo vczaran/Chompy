@@ -35,7 +35,7 @@ export default function Cart () {
                 {show && 
                     <ul>
                         <div className="cart-drop-headers">
-                            <h2>Cart Subtotal: ${price}</h2>
+                            <h2>Cart Subtotal: ${price.toFixed(2)}</h2>
                             <Link to="/cart">Proceed to Checkout</Link>
                        </div>
                       {cart.map( item => <CartItem item={item}/>)}
