@@ -21,5 +21,8 @@
   "bugs": {
     "url": "https://github.com/vczaran/Chompy/issues"
   },
-  "homepage": "https://github.com/vczaran/Chompy#readme"
+  "homepage": "https://github.com/vczaran/Chompy#readme",
+  "dependencies": {
+    "moment-timezone": "^0.5.43"
+  }
 }
