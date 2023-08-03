@@ -10,6 +10,7 @@ import ReviewForm from "./components/ReviewForm";
 import EditReviewForm from "./components/ReviewForm/EditReviewForm";
 import CheckoutPage from "./components/CheckoutPage";
 import SearchPage from "./components/SearchPage";
+import Footer from "./components/Footer/Footer";
 
 
 function App() {
@@ -58,6 +59,7 @@ function App() {
           </Route>
 
         </Switch>
+        <Footer />
   </>
   
   );
