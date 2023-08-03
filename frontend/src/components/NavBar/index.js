@@ -13,13 +13,11 @@ function DropDown () {
 
     return (
       <>
+      
       <div className="DropDown"  
         onMouseEnter={() => setShow(true)}
         onMouseLeave={() => setShow(false)}>{dropdownTitle}
-          {/* <button> 
-            {/* put carrot here */}
-          {/* </button> */}
-          
+          <i class="fa-solid fa-user" style={{color: "#ffffff"}}></i>
           {show && !currentUser && (
             <div className="splash-nav-links">
               <Link id="login" to="/login">Sign In</Link>
@@ -31,7 +29,6 @@ function DropDown () {
             <LogOut />
           </div>
           )}
-          
         </div>
 
         <div className="cart">

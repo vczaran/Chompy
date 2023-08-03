@@ -8,6 +8,7 @@ import ProductShow from "./components/ProductShow";
 import CartIndex from "./components/Cart/CartIndex";
 import ReviewForm from "./components/ReviewForm";
 import EditReviewForm from "./components/ReviewForm/EditReviewForm";
+import CheckoutPage from "./components/CheckoutPage";
 import SearchPage from "./components/SearchPage";
 
 
@@ -22,6 +23,10 @@ function App() {
 
           <Route path="/register" >
             <SignupForm />
+          </Route>
+
+          <Route path="/checkout" >
+            <CheckoutPage />
           </Route>
 
           <Route path="/cart" >

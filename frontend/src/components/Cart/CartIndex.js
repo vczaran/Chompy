@@ -3,12 +3,14 @@ import { useDispatch, useSelector } from "react-redux";
 import CartIndexItem from "./CartIndexItem";
 import './Cart.css';
 import { checkout, resetCart } from "../../store/cart";
+import { useHistory } from "react-router-dom";
 
 export default function CartIndex () {
     let currentUser = useSelector(state => state.session.user);
     const cart = useSelector(state => Object.values(state.cart));
     const products = useSelector(state => state.products);
     const dispatch = useDispatch();
+    const history = useHistory();
 
     let quant = 0;
     let price = 0;
@@ -22,7 +24,7 @@ export default function CartIndex () {
 
     function handleCheckout () {
         dispatch(resetCart());
-        dispatch(checkout(currentUser.id));
+        dispatch(checkout(currentUser.id)).then(() => history.push("/checkout"));
     }
 
     if (cart && cart.length) {

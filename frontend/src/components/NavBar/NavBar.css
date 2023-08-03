@@ -73,6 +73,10 @@
     height: fit-content;
 }
 
+.DropDown i {
+    margin-left: 10px;
+}
+
 .logout-from-dropdown {
     display: flex;
     flex-direction: column;
