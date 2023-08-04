@@ -67,6 +67,17 @@ function ProductShow () {
         )
     })
 
+      const ColorOptions = product.colorOptions.map(color => {
+        return (
+            <button name="color" onClick={(e)=>{
+                selected.color?.classList.remove('selected');
+                e.target.classList.add('selected');
+                selected.color = e.target;
+            }}
+            >{color}</button>
+        )
+    })
+
     const ReviewList = Object.values(reviews).map(review => {
         if (review?.productId == productId && review?.authorId == currentUser?.id) {
              return (
@@ -100,17 +111,24 @@ function ProductShow () {
                 <h1>{product.name}</h1>
                 <p>{product.rating}</p>
                 <p id="price">${product.price}</p>
+                
                 {(product.flavorOptions.length > 0) && 
-                <div className="flavors">
-                    <p>Flavor</p>
-                    {FlavorOptions}
-                </div>}
+                    <div className="flavors">
+                        <p>Flavor</p>
+                        {FlavorOptions}
+                    </div>}
 
                 {(product.sizeOptions.length > 0) && 
-                <div className="sizes">
-                    <p>Size</p>
-                    {SizeOptions}
-                </div>}
+                    <div className="sizes">
+                        <p>Size</p>
+                        {SizeOptions}
+                    </div>}
+
+                 {(product.colorOptions.length > 0) && 
+                    <div className="colors">
+                        <p>Color</p>
+                        {ColorOptions}
+                    </div>}
             </div>
             <div className="dropdown-buttons-container-show">
                 <div className="inner-dropdown-container">
