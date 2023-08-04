@@ -71,7 +71,6 @@ function ProductShow () {
         if (review?.productId == productId && review?.authorId == currentUser?.id) {
              return (
                     <li id="review" key={review.id}>
-                        {/* <p>By {review.name} on {review.createdAt}</p> */}
                         <p>By {review.name} on {moment(review.createdAt).format("MMM Do YYYY")}</p>
                         <h3>{review.title}</h3>
                         <p id="review-body">{review.body}</p>
@@ -101,14 +100,17 @@ function ProductShow () {
                 <h1>{product.name}</h1>
                 <p>{product.rating}</p>
                 <p id="price">${product.price}</p>
+                {(product.flavorOptions.length > 0) && 
                 <div className="flavors">
                     <p>Flavor</p>
                     {FlavorOptions}
-                </div>
+                </div>}
+
+                {(product.sizeOptions.length > 0) && 
                 <div className="sizes">
                     <p>Size</p>
                     {SizeOptions}
-                </div>
+                </div>}
             </div>
             <div className="dropdown-buttons-container-show">
                 <div className="inner-dropdown-container">

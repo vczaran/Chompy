@@ -15,6 +15,7 @@
     width: 200px;
     margin-right: 100px;
     padding: 20px;
+    object-fit: contain;
 }
 
 .product-show-info {
