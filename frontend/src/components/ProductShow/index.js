@@ -94,7 +94,7 @@ function ProductShow () {
         } else if (review?.productId == productId) {
               return (
                     <li id="review" key={review.id}>
-                        <p>By {review.name} on {review.createdAt}</p>
+                        <p>By {review.name} on {moment(review.createdAt).format("MMM Do YYYY")}</p>
                         <h3>{review.title}</h3>
                         <p id="review-body">{review.body}</p>
                     </li> 
