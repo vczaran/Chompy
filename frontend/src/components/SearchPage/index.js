@@ -27,31 +27,32 @@ export default function SearchPage () {
     }, []);
 
 
-    // function handleAdd (resultId) {
-    //     if (!currentUser) {
-    //         history.push('/login')
-    //     } else {
-    //         let userId = currentUser.id;
-    //         let product = cart[resultId];
-
-    //         if (product) {
-    //             setQuantity(quantity += 1);
-    //             dispatch(updateCartItem(product.id, quantity));
-    //         } else {
-    //             let cartItem = { quantity, userId, product};
-    //             dispatch(addCartItem(cartItem));
-    //          }
-    //         }
+    const handleAdd = (resultId) => {
+        if (!currentUser) {
+            history.push('/login')
+        } else {
+            let userId = currentUser?.id;
+            let product = cart[resultId];
+    
+            if (product) {
+                setQuantity(quantity += 1);
+                dispatch(updateCartItem(product?.id, quantity));
+            } else {
+                let cartItem = { quantity, userId, resultId};
+                dispatch(addCartItem(cartItem));
+             }
+            }
+            }
 
     const SearchList = searchResults.map(result => {
     
         return (
-                <li key={result.id}>
-                    <img src={result.imageUrl} />
-                    <Link id="link-to-show-from-product" to={`/products/${result.id}`}><p>{result.name}</p></Link>
-                    <p>{result.rating}</p>
-                    <p id="index-price">${result.price}</p>
-                    {/* <button className="add-to-cart-from-splash" onClick={() => handleAdd(result.id)}>Add to Cart</button> */}
+                <li key={result?.id}>
+                    <img src={result?.imageUrl} />
+                    <Link id="link-to-show-from-product" to={`/products/${result?.id}`}><p>{result?.name}</p></Link>
+                    <p>{result?.rating}</p>
+                    <p id="index-price">${result?.price}</p>
+                    <button className="add-to-cart-from-splash" onClick={() => handleAdd(result?.id)}>Add to Cart</button>
                 </li>
         );
     });
@@ -65,4 +66,3 @@ export default function SearchPage () {
         </div>
     );
 }
-// }
