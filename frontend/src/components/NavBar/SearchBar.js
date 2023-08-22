@@ -43,9 +43,15 @@ export default function SearchBar () {
         setSearchText("");
     }
 
+    function handleEnter(e) {
+        if (e.key === 'Enter') {
+            handleSubmit(e)
+        };
+    }
+
     return (
         <div className="searchbar-container">
-            <input type="text" id="search-input" value={searchText} placeholder="Search" onChange={handleSearch}/>
+            <input type="text" id="search-input" value={searchText} placeholder="Search" onChange={handleSearch} onKeyDown={handleEnter}/>
             <button id="search-button" onClick={handleSubmit}><i class="fa-solid fa-magnifying-glass fa-xl" style={{color: "#244cbb"}}></i></button>
             {searchText && searchResults && <ul id="search-dropdown">
                 {searchResults.map(result => {

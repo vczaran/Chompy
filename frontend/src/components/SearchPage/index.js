@@ -60,7 +60,7 @@ export default function SearchPage () {
 
     return (
         <div className="search-page">
-            <h1>Search Results for "{query}"</h1>
+            <h1>Search Results for "{query}":</h1>
             <ul className="products-index">
                 {SearchList}
             </ul>
