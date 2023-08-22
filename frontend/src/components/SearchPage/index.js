@@ -15,7 +15,7 @@ export default function SearchPage () {
     const query = searchParams.get("query");
     const dispatch = useDispatch();
     const searchResults = useSelector(state => Object.values(state.search));
-    const [quantity, setQuantity] = useState(1);
+    let [quantity, setQuantity] = useState(1);
     const history = useHistory();
     const currentUser = useSelector(state => state.session.user);
     const cart = useSelector(state => Object.values(state.cart));
@@ -30,19 +30,20 @@ export default function SearchPage () {
     const handleAdd = (resultId) => {
         if (!currentUser) {
             history.push('/login')
-        } else {
-            let userId = currentUser?.id;
-            let product = cart[resultId];
+        }
+
+        let userId = currentUser?.id;
+        let product = cart[resultId];
     
-            if (product) {
-                setQuantity(quantity += 1);
-                dispatch(updateCartItem(product?.id, quantity));
-            } else {
-                let cartItem = { quantity, userId, resultId};
-                dispatch(addCartItem(cartItem));
-             }
-            }
-            }
+        if (product) {
+            setQuantity(quantity += 1);
+            dispatch(updateCartItem(product?.id, quantity));
+        } else {
+            let productId = resultId;
+            let cartItem = { quantity, userId, productId};
+            dispatch(addCartItem(cartItem));
+         }
+    }
 
     const SearchList = searchResults.map(result => {
     
@@ -59,7 +60,7 @@ export default function SearchPage () {
 
     return (
         <div className="search-page">
-            <h1>Search Results for "{query}"</h1>
+            <h1>Search Results for "{query}":</h1>
             <ul className="products-index">
                 {SearchList}
             </ul>
