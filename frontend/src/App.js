@@ -34,9 +34,9 @@ function App() {
             <CartIndex />
           </Route>
 
-          {/* <Route path="/search" >
+          <Route path="/search" >
             <SearchPage />
-          </Route> */}
+          </Route>
 
           <Route exact path="/review/:productId" >
             <ReviewForm />

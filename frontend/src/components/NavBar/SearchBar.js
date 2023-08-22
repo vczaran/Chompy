@@ -39,6 +39,8 @@ export default function SearchBar () {
         if (searchText.trim() !== "") {
             history.push(`/search?query=${searchText}`);
         }
+
+        setSearchText("");
     }
 
     return (
