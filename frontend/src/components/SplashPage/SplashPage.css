@@ -1,5 +1,14 @@
+.SplashPage {
+    display: flex;
+    flex-direction: column;
+}
 
 .SplashPage h1 {
     font-family: 'Poppins';
     font-size: 20px;
+}
+
+.carousel {
+    height: 25vw;
+    width: 50%;
 }
