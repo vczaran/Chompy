@@ -1,6 +1,7 @@
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import { fetchCartItems, resetCart } from "./cart";
 import { csrfFetch } from "./csrf";
-import { storeErrors } from "./errors";
+import { storeErrors, removeErrors } from "./errors";
 
 export const SET_CURRENT_USER = 'session/SET_CURRENT_USER';
 const REMOVE_CURRENT_USER = 'session/REMOVE_CURRENT_USER';
@@ -28,16 +29,17 @@ const storeCurrentUser = (user, cart) => {
     };
   }
 
-export const loginUser = ({ email, password }) => async dispatch => {
+export const loginUser = ({ lowerEmail, password }) => async dispatch => {
     const res = await csrfFetch("/api/session", {
       method: "POST",
-      body: JSON.stringify({email, password})
+      body: JSON.stringify({lowerEmail, password})
     });
     const data = await res.json();
     if (res.ok) {
       storeCurrentUser(data?.user, data?.cart);
       dispatch(setCurrentUser(data?.user, data?.cart));
       dispatch(fetchCartItems(data.user?.id));
+      dispatch(removeErrors());
       return res;
     } else {
       dispatch(storeErrors(data.errors));
@@ -81,6 +83,7 @@ export const loginUser = ({ email, password }) => async dispatch => {
       storeCurrentUser(data.user, data.cart);
       dispatch(setCurrentUser(data.user, data.cart));
       dispatch(fetchCartItems(data.user.id));
+      dispatch(removeErrors());
       return res;
     } else {
       dispatch(storeErrors(data.errors));
