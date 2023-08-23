@@ -11,6 +11,7 @@ import EditReviewForm from "./components/ReviewForm/EditReviewForm";
 import CheckoutPage from "./components/CheckoutPage";
 import SearchPage from "./components/SearchPage";
 import Footer from "./components/Footer/Footer";
+import NotFoundPage from "./components/NotFoundPage/NotFoundPage";
 
 
 function App() {
@@ -18,23 +19,23 @@ function App() {
     <>
       <NavBar />
         <Switch>
-          <Route path="/login" >
+          <Route exact path="/login" >
             <LoginForm />
           </Route>
 
-          <Route path="/register" >
+          <Route exact path="/register" >
             <SignupForm />
           </Route>
 
-          <Route path="/checkout" >
+          <Route exact path="/checkout" >
             <CheckoutPage />
           </Route>
 
-          <Route path="/cart" >
+          <Route exact path="/cart" >
             <CartIndex />
           </Route>
 
-          <Route path="/search" >
+          <Route exact path="/search" >
             <SearchPage />
           </Route>
 
@@ -50,12 +51,16 @@ function App() {
             <ProductShow />
           </Route>
 
-          <Route path="/products" >
+          <Route exact path="/products" >
             <ProductsIndex />
           </Route>
 
-           <Route path="/" >
+           <Route exact path="/" >
             <SplashPage />
+          </Route>
+
+          <Route exact path="*" >
+            <NotFoundPage/>
           </Route>
 
         </Switch>

@@ -1,0 +1,50 @@
+.not-found-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 30px;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+.not-found-page img {
+    height: 25vw;
+    width: 40vw;
+}
+
+.not-found-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding: 30px;
+}
+
+.not-found-text h1 {
+    font-size: 54px;
+    font-family: 'Roboto';
+}
+
+.not-found-text p {
+    font-size: 16px;
+    font-family: 'Roboto';
+}
+
+.not-found-text a {
+    text-decoration: none;
+    text-align: center;
+    font-family: 'Roboto';
+    font-size: 16px;
+    background-color: #ef6c00;
+    color: #fff;
+    border: 1.6px solid #ef6c00;
+    font-weight: 700;
+    border-radius: 5px;
+    padding: 10px 30px 10px 30px;
+    margin-top: 10px;
+    width: 35%;
+}
+
+.not-found-text a:hover {
+    cursor: pointer;
+    background-color: #ef8126;
+}
