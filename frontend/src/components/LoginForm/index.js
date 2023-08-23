@@ -19,8 +19,8 @@ function LoginForm() {
 
     function handleSubmit(e) {
         e.preventDefault();
-        
-        dispatch(loginUser({email, password}))
+        const lowerEmail = email.toLowerCase();
+        dispatch(loginUser({lowerEmail, password}))
             .catch(async (res) => {
                 let data;
                 try {
@@ -49,7 +49,7 @@ function LoginForm() {
                             <input placeholder="Password" type="password" value={password} onChange={(e) => {setPassword(e.target.value)}} required/>
                         </ul>
                         <input id="signin-button" type="submit" value="Sign In"></input>
-                        <button onClick={(() => {dispatch(loginUser({email: "demo@email.com", password: "password"}))})} id="signin-button">Demo Login</button>
+                        <button onClick={(() => {dispatch(loginUser({lowerEmail: "demo@email.com", password: "password"}))})} id="signin-button">Demo Login</button>
                     </form>
 
                     <div className="login-new-customer">

@@ -17,7 +17,8 @@ function SignupForm() {
     function handleSubmit(e) {
         e.preventDefault();
         if (password === confirmPassword) {
-        dispatch(signupUser({name, email, password}))
+        const lowerEmail = email.toLowerCase();
+        dispatch(signupUser({name, lowerEmail, password}))
             .catch(async (res) => {
                 let data;
                 try {

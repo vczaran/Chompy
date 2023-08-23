@@ -28,10 +28,10 @@ const storeCurrentUser = (user, cart) => {
     };
   }
 
-export const loginUser = ({ email, password }) => async dispatch => {
+export const loginUser = ({ lowerEmail, password }) => async dispatch => {
     const res = await csrfFetch("/api/session", {
       method: "POST",
-      body: JSON.stringify({email, password})
+      body: JSON.stringify({lowerEmail, password})
     });
     const data = await res.json();
     if (res.ok) {
@@ -71,10 +71,10 @@ export const loginUser = ({ email, password }) => async dispatch => {
   };
 
   export const signupUser = (user) => async (dispatch) => {
-    const { name, email, password } = user;
+    const { name, lowerEmail, password } = user;
     const res = await csrfFetch("/api/users", {
       method: "POST",
-      body: JSON.stringify({name, email, password})
+      body: JSON.stringify({name, lowerEmail, password})
     });
     const data = await res.json();
     if (res.ok) {
