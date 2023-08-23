@@ -2,23 +2,30 @@ import { useDispatch, useSelector } from "react-redux";
 import { signupUser } from "../../store/sessionReducer";
 import { useState } from "react";
 import './SignupForm.css';
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import { removeErrors, storeErrors } from "../../store/errors";
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
 
 function SignupForm() {
     const dispatch = useDispatch();
-    const [email, setEmail] = useState("");
+    const [oldEmail, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
     const [name, setName] = useState("");
     const errors = useSelector(state => state.errors);
+    const history = useHistory();
+    const currentUser = useSelector(state => state.session.user);
+
+     if (currentUser) {
+        return <Redirect to="/" />;
+    }
 
     function handleSubmit(e) {
         e.preventDefault();
         if (password === confirmPassword) {
-        const lowerEmail = email.toLowerCase();
-        dispatch(signupUser({name, lowerEmail, password}))
+        const email = oldEmail.toLowerCase();
+        dispatch(signupUser({name, email, password}))
             .catch(async (res) => {
                 let data;
                 try {
@@ -29,7 +36,7 @@ function SignupForm() {
                 if (data?.errors) {
                     dispatch(storeErrors(data.errors));
                 } else {
-                    dispatch(removeErrors());
+                    dispatch(removeErrors()).then(() => history.push("/"));
                 }
             });
         } else {
@@ -45,8 +52,7 @@ function SignupForm() {
                 <h3>Please enter your information</h3>
                 <ul className="signup-info">
                     <input placeholder="Full Name" type="text" value={name} onChange={(e) => {setName(e.target.value)}} required/>
-                    {errors.length ? <p className="signup-errors">Name is required</p> : null}
-                    <input placeholder="Email Address" type="text" value={email} onChange={(e) => {setEmail(e.target.value)}} required/>
+                    <input placeholder="Email Address" type="text" value={oldEmail} onChange={(e) => {setEmail(e.target.value)}} required/>
                     {errors.length ? <p className="signup-errors">{errors[0]}</p> : null}
                     <input placeholder="Password (At least 8 characters)" type="password" value={password} onChange={(e) => {setPassword(e.target.value)}} required/>
                     {errors.length ? <p className="signup-errors">{errors[1]}</p> : null}
