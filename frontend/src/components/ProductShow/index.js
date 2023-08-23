@@ -16,6 +16,9 @@ function ProductShow () {
     const reviews = useSelector(state => state.reviews);
 
     const [quantity, setQuantity] = useState(1);
+    const [color, setColor] = useState("");
+    const [size, setSize] = useState("");
+    const [flavor, setFlavor] = useState("");
     const history = useHistory();
     const currentUser = useSelector(state => state.session.user);
 
@@ -33,7 +36,7 @@ function ProductShow () {
         } else {
             let userId = currentUser.id;
             
-            let cartItem = { quantity, userId, productId};
+            let cartItem = { quantity, userId, productId, color, size, flavor};
             dispatch(addCartItem(cartItem));
         }
     }
@@ -52,6 +55,7 @@ function ProductShow () {
                 selected.flavor?.classList.remove('selected');
                 e.target.classList.add('selected');
                 selected.flavor = e.target;
+                setFlavor(flavor);
             }}>{flavor}</button>
         )
     })
@@ -62,6 +66,7 @@ function ProductShow () {
                 selected.size?.classList.remove('selected');
                 e.target.classList.add('selected');
                 selected.size = e.target;
+                setSize(size);
             }}
             >{size}</button>
         )
@@ -73,6 +78,7 @@ function ProductShow () {
                 selected.color?.classList.remove('selected');
                 e.target.classList.add('selected');
                 selected.color = e.target;
+                setColor(color);
             }}
             >{color}</button>
         )
