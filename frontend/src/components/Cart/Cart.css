@@ -84,13 +84,6 @@
     margin-bottom: 100px;
 }
 
-.cart-items-list ul {
-    display: flex;
-    justify-content: space-between;
-    padding: 10px;
-    border: 1px solid #eee;
-    margin: auto;
-}
 
 .cart-page {
     display: flex;
@@ -144,9 +137,16 @@
     justify-content: left;
 }
 
+#cart-index-item {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    border: 1px solid #eee;
+    padding: 10px;
+}
+
 #cart-index-item img {
-    width: 10%;
-    height: 15%;
+    width: 10vw;
+    height: 15vw;
     object-fit: contain;
     padding: 10px;
 }
@@ -154,19 +154,28 @@
 #cart-index-buttons {
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly
+    justify-content: space-evenly;
+    width: fit-content;
+    margin-left: 150px;
+}
+
+#cart-index-buttons label {
+    font-family: 'Poppins';
+    font-size: 12px;
 }
 
 .quantity-dropdown-cartindex {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     border: 1px solid gray;
     border-radius: 7px;
+    margin-left: 10px;
 }
 
 #cart-info {
     font-family: 'Poppins';
     font-size: 14px;
     padding: 10px;
+    width: 30vw;
 }
 
 #cart-info li {
