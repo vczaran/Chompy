@@ -24,6 +24,9 @@ export default function CartIndexItem (item) {
             <div id="cart-info">
                 <li>{product?.name}</li>
                 <li id="cart-index-price">${product?.price}</li>
+                {item?.item.flavor && (<li>Flavor: {item?.item.flavor}</li>)}
+                {item?.item.size && (<li>Size: {item?.item.size}</li>)}
+                {item?.item.color && (<li>Color: {item?.item.color}</li>)}
                 <li>Quantity: {quantity}</li>
             </div>
             <div id="cart-index-buttons">
