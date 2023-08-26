@@ -19,6 +19,7 @@ function ProductShow () {
     const [color, setColor] = useState("");
     const [size, setSize] = useState("");
     const [flavor, setFlavor] = useState("");
+    const [price, setPrice] = useState(product?.price);
     const history = useHistory();
     const currentUser = useSelector(state => state.session.user);
 
@@ -60,13 +61,32 @@ function ProductShow () {
         )
     })
 
+    // const handlePrice = (size) => {
+    //       if (product.sizeOptions.indexOf(size) === 1) {
+    //                 setPrice(product.price += 10.56)
+    //              } else if (product.sizeOptions.indexOf(size) === 0) {
+    //                  setPrice(product.price)
+    //              } else {
+    //                  setPrice(product.price += 15.87)
+    //              };
+    // }
+
     const SizeOptions = product.sizeOptions.map(size => {
+
         return (
             <button name="size" onClick={(e)=>{
                 selected.size?.classList.remove('selected');
                 e.target.classList.add('selected');
                 selected.size = e.target;
                 setSize(size);
+                // handlePrice(size);
+                // if (product.sizeOptions.indexOf(selected.size) === 1) {
+                //     setPrice(product.price += 10.56)
+                //  } else if (product.sizeOptions.indexOf(selected.size) === 0) {
+                //      setPrice(product.price)
+                //  } else {
+                //      setPrice(product.price += 15.87)
+                //  };
             }}
             >{size}</button>
         )
