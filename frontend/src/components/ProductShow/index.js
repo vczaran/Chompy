@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux"
 import { useParams, useHistory } from "react-router-dom";
 import { fetchProduct } from "../../store/products";
@@ -16,8 +16,8 @@ function ProductShow () {
     const reviews = useSelector(state => state.reviews);
 
     const [quantity, setQuantity] = useState(1);
-    const [color, setColor] = useState("");
-    const [size, setSize] = useState("");
+    let [color, setColor] = useState("");
+    let [sizeOption, setSize] = useState("");
     const [flavor, setFlavor] = useState("");
     const [price, setPrice] = useState(product?.price);
     const history = useHistory();
@@ -37,7 +37,7 @@ function ProductShow () {
         } else {
             let userId = currentUser.id;
             
-            let cartItem = { quantity, userId, productId, color, size, flavor};
+            let cartItem = { quantity, userId, productId, color, sizeOption, flavor};
             dispatch(addCartItem(cartItem));
         }
     }
@@ -61,24 +61,28 @@ function ProductShow () {
         )
     })
 
-    // const handlePrice = (size) => {
-    //       if (product.sizeOptions.indexOf(size) === 1) {
-    //                 setPrice(product.price += 10.56)
-    //              } else if (product.sizeOptions.indexOf(size) === 0) {
-    //                  setPrice(product.price)
-    //              } else {
-    //                  setPrice(product.price += 15.87)
-    //              };
-    // }
+    const handlePrice = (size) => {
+        setSize(size);
+        //   if (product.sizeOptions.indexOf(size) === 1) {
+        //             setPrice(product.price += 10.56)
+        //          } else if (product.sizeOptions.indexOf(size) === 0) {
+        //              setPrice(product.price)
+        //          } else {
+        //              setPrice(product.price += 15.87)
+        //          };
+
+    }
 
     const SizeOptions = product.sizeOptions.map(size => {
 
         return (
-            <button name="size" onClick={(e)=>{
+            <button name="size" key={size.id} onClick={(e)=>{
                 selected.size?.classList.remove('selected');
                 e.target.classList.add('selected');
                 selected.size = e.target;
-                setSize(size);
+                handlePrice(size);
+                // setSize(size);
+                // debugger
                 // handlePrice(size);
                 // if (product.sizeOptions.indexOf(selected.size) === 1) {
                 //     setPrice(product.price += 10.56)
@@ -94,14 +98,14 @@ function ProductShow () {
 
       const ColorOptions = product.colorOptions.map(color => {
         return (
-            <button name="color" onClick={(e)=>{
+            <button name="color" value={color} onClick={(e)=>{
                 selected.color?.classList.remove('selected');
-                e.target.classList.add('selected');
                 selected.color = e.target;
-                setColor(color);
+                e.target.classList.add('selected');
             }}
             >{color}</button>
         )
+      
     })
 
     const ReviewList = Object.values(reviews).map(review => {
