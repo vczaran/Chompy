@@ -29,8 +29,9 @@ export default function CartIndex () {
 
 
     function handleCheckout () {
+        dispatch(checkout(currentUser.id));
+        history.push("/checkout");
         dispatch(resetCart());
-        dispatch(checkout(currentUser.id)).then(() => history.push("/checkout"));
     }
 
     if (cart && cart.length) {

@@ -38,13 +38,15 @@ export default function Cart () {
                 <Link to="/cart"><h1>cart</h1></Link>
 
                 {show && 
-                    <ul>
+                    <div className="cart-drop">
                         <div className="cart-drop-headers">
                             <h2>Cart Subtotal: ${price?.toFixed(2)}</h2>
                             <Link to="/cart">Proceed to Checkout</Link>
                        </div>
-                      {cart.map( item => <CartItem item={item}/>)}
-                    </ul>  
+                        <ul>
+                            {cart.map( item => <CartItem item={item}/>)}
+                        </ul>  
+                    </div>
                 }     
             </div>
         )
@@ -58,7 +60,7 @@ export default function Cart () {
                     <Link to="/cart"><h1>cart</h1></Link>
 
                     {show &&
-                        <ul>
+                        <ul className="your-cart-empty">
                             Your cart is empty.
                         </ul>
                     }
