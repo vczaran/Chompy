@@ -1,15 +1,20 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import CartItem from "./CartItem";
 import './Cart.css';
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { fetchProducts } from "../../store/products";
 
 export default function Cart () {
     let currentUser = useSelector(state => state.session.user);
     const cart = useSelector(state => Object.values(state.cart));
     const products = useSelector(state => state.products);
     const [show, setShow] = useState(false);
+    const dispatch = useDispatch();
 
+    useEffect(() => {
+        dispatch(fetchProducts())
+    }, []);
 
     let quant = 0;
     let price = 0;

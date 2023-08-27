@@ -4,6 +4,8 @@ import CartIndexItem from "./CartIndexItem";
 import './Cart.css';
 import { checkout, resetCart } from "../../store/cart";
 import { useHistory } from "react-router-dom";
+import { useEffect } from "react";
+import { fetchProducts } from "../../store/products";
 
 export default function CartIndex () {
     let currentUser = useSelector(state => state.session.user);
@@ -11,6 +13,10 @@ export default function CartIndex () {
     const products = useSelector(state => state.products);
     const dispatch = useDispatch();
     const history = useHistory();
+
+    useEffect(() => {
+        dispatch(fetchProducts())
+    }, []);
 
     let quant = 0;
     let price = 0;
