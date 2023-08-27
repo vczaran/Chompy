@@ -10,20 +10,20 @@ export default function CartIndexItem (item) {
     const [quantity, setQuantity] = useState(item.item.quantity);
 
     function handleRemove () {
-        dispatch(deleteCartItem(item.item.id));
-        dispatch(removeProduct(item.item.id));
+        dispatch(deleteCartItem(item?.item.id));
+        dispatch(removeProduct(item?.item.id));
     }
 
     function handleChange (e) {
         setQuantity(e.target.value);
-        dispatch(updateCartItem(item.item.id, e.target.value));
+        dispatch(updateCartItem(item?.item.id, e.target.value));
     }
 
     return (
         <ul id="cart-index-item">
             <img src={`${product?.imageUrl}`}/>
             <div id="cart-info">
-                <Link id="link-to-show-from-product" to={`/products/${product.id}`}><li>{product?.name}</li></Link>
+                <Link id="link-to-show-from-product" to={`/products/${product?.id}`}><li>{product?.name}</li></Link>
                 <li id="cart-index-price">${product?.price}</li>
                 <li>Quantity: {quantity}</li>
             </div>
@@ -42,7 +42,7 @@ export default function CartIndexItem (item) {
                                 <option value="11">11</option>
                                 <option value="12">12</option>
                 </select>
-                <button onClick={() => handleRemove(item.item.id)}>Remove</button>
+                <button onClick={() => handleRemove(item?.item.id)}>Remove</button>
             </div>
         </ul>
     )
