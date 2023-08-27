@@ -9,7 +9,7 @@ export default function CartItem (item) {
     return (
         <li className="cart-drop-item">
             <img src={`${product?.imageUrl}`}/>
-            <Link to={`/products/${product.id}`}><p>{product?.name}</p></Link>
+            <Link to={`/products/${product?.id}`}><p>{product?.name}</p></Link>
             <p>${product?.price}</p>
             <p>(Qty: {item.item.quantity})</p>
         </li>
