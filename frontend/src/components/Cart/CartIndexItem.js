@@ -1,6 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { deleteCartItem, removeProduct, updateCartItem } from "../../store/cart";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 export default function CartIndexItem (item) {
     const products = useSelector(state => state.products);
@@ -22,7 +23,7 @@ export default function CartIndexItem (item) {
         <ul id="cart-index-item">
             <img src={`${product?.imageUrl}`}/>
             <div id="cart-info">
-                <li>{product?.name}</li>
+                <Link id="link-to-show-from-product" to={`/products/${product.id}`}><li>{product?.name}</li></Link>
                 <li id="cart-index-price">${product?.price}</li>
                 <li>Quantity: {quantity}</li>
             </div>
