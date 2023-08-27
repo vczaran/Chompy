@@ -16,8 +16,8 @@ export default function CartIndex () {
     let price = 0;
     if (currentUser && cart.length) {
         cart.forEach((item) => {
-            quant += parseFloat(item.quantity);
-            price += (parseFloat(products[item.productId].price * item.quantity));
+            quant += parseFloat(item?.quantity);
+            price += (parseFloat(products[item.productId]?.price * item?.quantity));
         })
     }
 
@@ -39,7 +39,7 @@ export default function CartIndex () {
             <div className="checkout-container">
                 <div className="checkout-headers">
                     <h1>Subtotal</h1>
-                    <h1>${price.toFixed(2)}</h1>
+                    <h1>${price?.toFixed(2)}</h1>
                     <h3>{quant} items</h3>
                 </div>
                 <button onClick={handleCheckout}>Checkout</button>
