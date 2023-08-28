@@ -36,8 +36,9 @@ function ProductShow () {
             history.push('/login')
         } else {
             let userId = currentUser.id;
-            
+            console.log(color);
             let cartItem = { quantity, userId, productId, color, sizeOption, flavor};
+            console.log(color, "after");
             dispatch(addCartItem(cartItem));
         }
     }
@@ -98,18 +99,22 @@ function ProductShow () {
         )
     })
 
-      const ColorOptions = product.colorOptions.map(color => {
+      const ColorOptions = product.colorOptions.map(color2 => {
         return (
-            <button name="color" value={color} onClick={handleColor}>{color}</button>
+            <button name="color" className={color == color2 ? "selected" : ""} value={color2} onClick={(e) => { setColor(color2) }}>{color2}</button>
         )
       
     })
 
     function handleColor (e) {
-        selected.color?.classList.remove('selected');
-        selected.color = e.target;
-        e.target.classList.add('selected');
-        setColor(color);
+        // console.log(1);
+        // selected.color?.classList.remove('selected');
+        // selected.color = e.target;
+        // console.log(2);
+        // e.target.classList.add('selected');
+        // console.log(3);
+        // console.log(color);
+        setColor(e.target.value);
     }
 
     const ReviewList = Object.values(reviews).map(review => {
