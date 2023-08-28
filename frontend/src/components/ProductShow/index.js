@@ -17,9 +17,9 @@ function ProductShow () {
 
     const [quantity, setQuantity] = useState(1);
     let [color, setColor] = useState("");
-    let [sizeOption, setSize] = useState("");
+    let [size, setSize] = useState("");
     const [flavor, setFlavor] = useState("");
-    const [price, setPrice] = useState(product?.price);
+    // const [price, setPrice] = useState(product?.price);
     const history = useHistory();
     const currentUser = useSelector(state => state.session.user);
 
@@ -36,36 +36,25 @@ function ProductShow () {
             history.push('/login')
         } else {
             let userId = currentUser.id;
-            console.log(color);
-            let cartItem = { quantity, userId, productId, color, sizeOption, flavor};
-            console.log(color, "after");
+            let cartItem = { quantity, userId, productId, color, size, flavor};
             dispatch(addCartItem(cartItem));
         }
     }
-
 
     function handleDelete (reviewId) {
         dispatch(deleteReview(reviewId));
     }
 
-
-    let selected = {flavor: null, size: null};
     
-    const FlavorOptions = product.flavorOptions.map(flavor => {
+    const FlavorOptions = product.flavorOptions.map(flavor2 => {
         return (
-            <button name="flavor" onClick ={handleFlavor}>{flavor}</button>
+            <button name="flavor" className={flavor == flavor2 ? "selected" : ""} value={flavor2} 
+            onClick={(e) => { setFlavor(flavor2) }}>{flavor2}</button>
         )
     })
 
-    function handleFlavor (e) {
-        selected.flavor?.classList.remove('selected');
-        e.target.classList.add('selected');
-        selected.flavor = e.target;
-        setFlavor(flavor);
-    }
-
-    const handlePrice = (size) => {
-        setSize(size);
+    // const handlePrice = (flavor) => {
+    //     setSize(size);
         //   if (product.sizeOptions.indexOf(size) === 1) {
         //             setPrice(product.price += 10.56)
         //          } else if (product.sizeOptions.indexOf(size) === 0) {
@@ -73,49 +62,22 @@ function ProductShow () {
         //          } else {
         //              setPrice(product.price += 15.87)
         //          };
+    // }
 
-    }
-
-    const SizeOptions = product.sizeOptions.map(size => {
+    const SizeOptions = product.sizeOptions.map(size2 => {
 
         return (
-            <button name="size" key={size.id} onClick={(e)=>{
-                selected.size?.classList.remove('selected');
-                e.target.classList.add('selected');
-                selected.size = e.target;
-                handlePrice(size);
-                // setSize(size);
-                // debugger
-                // handlePrice(size);
-                // if (product.sizeOptions.indexOf(selected.size) === 1) {
-                //     setPrice(product.price += 10.56)
-                //  } else if (product.sizeOptions.indexOf(selected.size) === 0) {
-                //      setPrice(product.price)
-                //  } else {
-                //      setPrice(product.price += 15.87)
-                //  };
-            }}
-            >{size}</button>
+            <button name="size" className={size == size2 ? "selected" : ""} value={size2} 
+            onClick={(e) => { setSize(size2) }}>{size2}</button>
         )
     })
 
       const ColorOptions = product.colorOptions.map(color2 => {
         return (
-            <button name="color" className={color == color2 ? "selected" : ""} value={color2} onClick={(e) => { setColor(color2) }}>{color2}</button>
+            <button name="color" className={color == color2 ? "selected" : ""} value={color2} 
+            onClick={(e) => { setColor(color2) }}>{color2}</button>
         )
-      
     })
-
-    function handleColor (e) {
-        // console.log(1);
-        // selected.color?.classList.remove('selected');
-        // selected.color = e.target;
-        // console.log(2);
-        // e.target.classList.add('selected');
-        // console.log(3);
-        // console.log(color);
-        setColor(e.target.value);
-    }
 
     const ReviewList = Object.values(reviews).map(review => {
         if (review?.productId == productId && review?.authorId == currentUser?.id) {
