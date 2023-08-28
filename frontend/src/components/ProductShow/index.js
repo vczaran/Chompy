@@ -19,7 +19,7 @@ function ProductShow () {
     let [color, setColor] = useState("");
     let [size, setSize] = useState("");
     const [flavor, setFlavor] = useState("");
-    // const [price, setPrice] = useState(product?.price);
+    let [price, setPrice] = useState(product?.price);
     const history = useHistory();
     const currentUser = useSelector(state => state.session.user);
 
@@ -53,24 +53,26 @@ function ProductShow () {
         )
     })
 
-    // const handlePrice = (flavor) => {
-    //     setSize(size);
-        //   if (product.sizeOptions.indexOf(size) === 1) {
-        //             setPrice(product.price += 10.56)
-        //          } else if (product.sizeOptions.indexOf(size) === 0) {
-        //              setPrice(product.price)
-        //          } else {
-        //              setPrice(product.price += 15.87)
-        //          };
-    // }
-
     const SizeOptions = product.sizeOptions.map(size2 => {
 
         return (
             <button name="size" className={size == size2 ? "selected" : ""} value={size2} 
-            onClick={(e) => { setSize(size2) }}>{size2}</button>
+            onClick={(e) => { 
+                setSize(size2);
+                handlePrice(size2); 
+            }}>{size2}</button>
         )
     })
+
+    function handlePrice (size2) {
+        if (product.sizeOptions.indexOf(size2) === 1) {
+                        setPrice(product.price + 10.56)
+                     } else if (product.sizeOptions.indexOf(size2) === 0) {
+                         setPrice(product.price)
+                     } else {
+                         setPrice(product.price + 15.87)
+                     };
+    }
 
       const ColorOptions = product.colorOptions.map(color2 => {
         return (
@@ -111,7 +113,7 @@ function ProductShow () {
             <div className="product-show-info">
                 <h1>{product.name}</h1>
                 <p>{product.rating}</p>
-                <p id="price">${product.price}</p>
+                <p id="price">${parseFloat(price).toFixed(2)}</p>
                 
                 {(product.flavorOptions.length > 0) && 
                     <div className="flavors">
