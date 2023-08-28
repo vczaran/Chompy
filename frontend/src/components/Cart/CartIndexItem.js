@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { deleteCartItem, removeProduct, updateCartItem } from "../../store/cart";
 import { useState } from "react";
-import { Link } from "react-router-dom/cjs/react-router-dom.min";
+import { Link } from "react-router-dom";
 
 export default function CartIndexItem (item) {
     const products = useSelector(state => state.products);
@@ -10,20 +10,20 @@ export default function CartIndexItem (item) {
     const [quantity, setQuantity] = useState(item.item.quantity);
 
     function handleRemove () {
-        dispatch(deleteCartItem(item.item.id));
-        dispatch(removeProduct(item.item.id));
+        dispatch(deleteCartItem(item?.item.id));
+        dispatch(removeProduct(item?.item.id));
     }
 
     function handleChange (e) {
         setQuantity(e.target.value);
-        dispatch(updateCartItem(item.item.id, e.target.value));
+        dispatch(updateCartItem(item?.item.id, e.target.value));
     }
 
     return (
         <ul id="cart-index-item">
-            <img src={`${product.imageUrl}`}/>
+            <img src={`${product?.imageUrl}`}/>
             <div id="cart-info">
-                <Link id="link-to-show-from-product" to={`/products/${product.id}`}><li>{product?.name}</li></Link>
+                <Link id="link-to-show-from-product" to={`/products/${product?.id}`}><li>{product?.name}</li></Link>
                 <li id="cart-index-price">${product?.price}</li>
                 {item?.item.flavor && (<li>Flavor: {item?.item.flavor}</li>)}
                 {item?.item.size && (<li>Size: {item?.item.size}</li>)}

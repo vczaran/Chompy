@@ -2,6 +2,7 @@ import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import { fetchCartItems, resetCart } from "./cart";
 import { csrfFetch } from "./csrf";
 import { storeErrors, removeErrors } from "./errors";
+import { fetchProducts } from "./products";
 
 export const SET_CURRENT_USER = 'session/SET_CURRENT_USER';
 const REMOVE_CURRENT_USER = 'session/REMOVE_CURRENT_USER';
@@ -65,7 +66,7 @@ export const loginUser = ({ lowerEmail, password }) => async dispatch => {
     if (res.ok) {
       storeCurrentUser(data?.user, data?.cart);
       dispatch(setCurrentUser(data?.user, data?.cart));
-      dispatch(fetchCartItems(data.user?.id));
+      dispatch(fetchCartItems(data.user?.id)); 
       return res;
     } else {
       dispatch(storeErrors(data?.errors));

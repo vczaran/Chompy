@@ -4,6 +4,8 @@ import CartIndexItem from "./CartIndexItem";
 import './Cart.css';
 import { checkout, resetCart } from "../../store/cart";
 import { useHistory } from "react-router-dom";
+import { useEffect } from "react";
+import { fetchProducts } from "../../store/products";
 
 export default function CartIndex () {
     let currentUser = useSelector(state => state.session.user);
@@ -12,19 +14,24 @@ export default function CartIndex () {
     const dispatch = useDispatch();
     const history = useHistory();
 
+    useEffect(() => {
+        dispatch(fetchProducts())
+    }, []);
+
     let quant = 0;
     let price = 0;
     if (currentUser && cart.length) {
         cart.forEach((item) => {
-            quant += parseFloat(item.quantity);
-            price += (parseFloat(products[item.productId].price * item.quantity));
+            quant += parseFloat(item?.quantity);
+            price += (parseFloat(products[item.productId]?.price * item?.quantity));
         })
     }
 
 
     function handleCheckout () {
+        dispatch(checkout(currentUser.id));
+        history.push("/checkout");
         dispatch(resetCart());
-        dispatch(checkout(currentUser.id)).then(() => history.push("/checkout"));
     }
 
     if (cart && cart.length) {
@@ -39,7 +46,7 @@ export default function CartIndex () {
             <div className="checkout-container">
                 <div className="checkout-headers">
                     <h1>Subtotal</h1>
-                    <h1>${price.toFixed(2)}</h1>
+                    <h1>${price?.toFixed(2)}</h1>
                     <h3>{quant} items</h3>
                 </div>
                 <button onClick={handleCheckout}>Checkout</button>
