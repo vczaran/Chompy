@@ -36,11 +36,13 @@ function ProductsIndex() {
     function handleAdd (productId) {
         if (!currentUser) {
             history.push('/login')
+        } else if (cart[productId]) {
+           dispatch(updateCartItem(quantity));
         } else {
             let userId = currentUser.id;
-            let product = cart[productId];
-
-            let cartItem = { quantity, userId, productId};
+            let product = products[productId];
+            let price = product.price;
+            let cartItem = { quantity, userId, productId, price};
             dispatch(addCartItem(cartItem));
         }
         }
