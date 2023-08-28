@@ -36,7 +36,7 @@ function ProductShow () {
             history.push('/login')
         } else {
             let userId = currentUser.id;
-            let cartItem = { quantity, userId, productId, color, size, flavor};
+            let cartItem = { quantity, userId, productId, color, size, flavor, price};
             dispatch(addCartItem(cartItem));
         }
     }
