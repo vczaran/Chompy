@@ -21,7 +21,7 @@ export default function Cart () {
     if (currentUser && cart.length) {
         cart.forEach((item) => {
             quant += parseFloat(item?.quantity);
-            price += parseFloat((products[item.productId]?.price * item?.quantity));
+            price += parseFloat((item?.price * item?.quantity));
         })
     }
       

@@ -10,7 +10,7 @@ export default function CartItem (item) {
         <li className="cart-drop-item">
             <img src={`${product?.imageUrl}`}/>
             <Link to={`/products/${product?.id}`}><p>{product?.name}</p></Link>
-            <p>${product?.price}</p>
+            <p>${parseFloat(item?.item.price).toFixed(2)}</p>
             <p>(Qty: {item.item.quantity})</p>
         </li>
     )

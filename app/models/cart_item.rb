@@ -11,6 +11,7 @@
 #  size       :string
 #  flavor     :string
 #  color      :string
+#  price      :float
 #
 class CartItem < ApplicationRecord
   belongs_to :user

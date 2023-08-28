@@ -24,7 +24,7 @@ export default function CartIndexItem (item) {
             <img src={`${product?.imageUrl}`}/>
             <div id="cart-info">
                 <Link id="link-to-show-from-product" to={`/products/${product?.id}`}><li>{product?.name}</li></Link>
-                <li id="cart-index-price">${product?.price}</li>
+                <li id="cart-index-price">${parseFloat(item?.item.price).toFixed(2)}</li>
                 {item?.item.flavor && (<li>Flavor: {item?.item.flavor}</li>)}
                 {item?.item.size && (<li>Size: {item?.item.size}</li>)}
                 {item?.item.color && (<li>Color: {item?.item.color}</li>)}
