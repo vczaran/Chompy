@@ -3,9 +3,9 @@ class Api::CartItemsController < ApplicationController
 
     def create
         @cart_item = CartItem.find_by(product_id: params[:product_id])
-
+        # @cart_item = CartItem.where(product_id: params[:product_id], size: params[:size])
         if @cart_item
-            @cart_item.update!(quantity: (@cart_item.quantity + 1))
+            @cart_item.update!(quantity: params[:quantity])
             render 'api/cart_items/show'
         else
             @cart_item = CartItem.new(cart_params)
@@ -14,13 +14,6 @@ class Api::CartItemsController < ApplicationController
             render 'api/cart_items/show'
         end
 
-     
-        # if @cart_item.save
-        #     render 'api/cart_items/show'
-        # else
-        #     render json: {errors: ""}, status: 422
-        # end
-     
     end
 
     def update
