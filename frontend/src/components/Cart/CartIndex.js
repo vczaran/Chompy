@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import CartIndexItem from "./CartIndexItem";
 import './Cart.css';
-import { checkout, resetCart } from "../../store/cart";
+import { checkout, fetchCartItems, resetCart } from "../../store/cart";
 import { useHistory } from "react-router-dom";
 import { useEffect } from "react";
 import { fetchProducts } from "../../store/products";
@@ -15,7 +15,8 @@ export default function CartIndex () {
     const history = useHistory();
 
     useEffect(() => {
-        dispatch(fetchProducts())
+        dispatch(fetchCartItems(currentUser.id));
+        dispatch(fetchProducts());
     }, []);
 
     let quant = 0;

@@ -4,6 +4,7 @@ import './Cart.css';
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { fetchProducts } from "../../store/products";
+import { fetchCartItems } from "../../store/cart";
 
 export default function Cart () {
     let currentUser = useSelector(state => state.session.user);
@@ -13,7 +14,8 @@ export default function Cart () {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch(fetchProducts())
+        dispatch(fetchProducts());
+        dispatch(fetchCartItems(currentUser.id));
     }, []);
 
     let quant = 0;
