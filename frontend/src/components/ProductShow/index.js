@@ -52,14 +52,16 @@ function ProductShow () {
     
     const FlavorOptions = product.flavorOptions.map(flavor => {
         return (
-            <button name="flavor" onClick ={(e) => { 
-                selected.flavor?.classList.remove('selected');
-                e.target.classList.add('selected');
-                selected.flavor = e.target;
-                setFlavor(flavor);
-            }}>{flavor}</button>
+            <button name="flavor" onClick ={handleFlavor}>{flavor}</button>
         )
     })
+
+    function handleFlavor (e) {
+        selected.flavor?.classList.remove('selected');
+        e.target.classList.add('selected');
+        selected.flavor = e.target;
+        setFlavor(flavor);
+    }
 
     const handlePrice = (size) => {
         setSize(size);
@@ -98,15 +100,17 @@ function ProductShow () {
 
       const ColorOptions = product.colorOptions.map(color => {
         return (
-            <button name="color" value={color} onClick={(e)=>{
-                selected.color?.classList.remove('selected');
-                selected.color = e.target;
-                e.target.classList.add('selected');
-            }}
-            >{color}</button>
+            <button name="color" value={color} onClick={handleColor}>{color}</button>
         )
       
     })
+
+    function handleColor (e) {
+        selected.color?.classList.remove('selected');
+        selected.color = e.target;
+        e.target.classList.add('selected');
+        setColor(color);
+    }
 
     const ReviewList = Object.values(reviews).map(review => {
         if (review?.productId == productId && review?.authorId == currentUser?.id) {
