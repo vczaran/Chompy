@@ -15,7 +15,7 @@ export default function Cart () {
 
     useEffect(() => {
         dispatch(fetchProducts());
-        dispatch(fetchCartItems(currentUser.id));
+        dispatch(fetchCartItems(currentUser?.id));
     }, []);
 
     let quant = 0;

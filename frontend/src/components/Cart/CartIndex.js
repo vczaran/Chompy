@@ -15,8 +15,8 @@ export default function CartIndex () {
     const history = useHistory();
 
     useEffect(() => {
-        dispatch(fetchCartItems(currentUser.id));
         dispatch(fetchProducts());
+        dispatch(fetchCartItems(currentUser?.id));
     }, []);
 
     let quant = 0;
